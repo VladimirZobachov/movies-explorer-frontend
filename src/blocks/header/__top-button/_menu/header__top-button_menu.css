@@ -1,0 +1,9 @@
+.header__top-button_menu{
+    display: none;
+}
+
+@media all and (max-width: 728px) {
+    .header__top-button_menu{
+        display: flex;
+    }
+}

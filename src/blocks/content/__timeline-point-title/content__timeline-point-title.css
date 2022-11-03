@@ -1,0 +1,11 @@
+.content__timeline-point-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: normal;
+    font-color: #ccc;
+    align-self: center;
+    min-height: 40px;
+}

@@ -1,0 +1,12 @@
+.content__student{
+    width: 89%;
+    min-height: 308px;
+    margin: auto;
+    padding-top: 69px;
+}
+@media all and(max-width: 768px) {
+    .content__student{
+        width: 87%;
+        padding-top: 53px;
+    }
+}

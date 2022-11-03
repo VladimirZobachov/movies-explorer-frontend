@@ -1,0 +1,12 @@
+.content__student-social-list{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    padding: 125px 0 0 0;
+    margin: 0;
+}
+@media all and (max-width: 768px) {
+    .content__student-social-list{
+        padding: 56px 0 0 0;
+    }
+}

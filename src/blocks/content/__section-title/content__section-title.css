@@ -1,0 +1,14 @@
+.content__section-title{
+    width: 100%;
+    border-bottom: solid black 1px;
+    font-size: 20px;
+    font-weight: normal;
+    padding-bottom: 22px;
+    padding-top: 29px;
+}
+
+@media all and (max-width: 768px) {
+    .content__section-title{
+        padding-top: 20px;
+    }
+}

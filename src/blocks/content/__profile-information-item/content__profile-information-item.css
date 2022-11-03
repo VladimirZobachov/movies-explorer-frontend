@@ -1,0 +1,8 @@
+.content__profile-information-item{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 410px;
+    justify-content: space-between;
+    padding: 16px 0;
+}

@@ -1,0 +1,12 @@
+.content__student-content{
+    display: grid;
+    grid-template-areas: "description avatar";
+    width: 100%;
+}
+@media all and (max-width: 320px) {
+    .content__student-content{
+        grid-template-areas:
+        "avatar"
+        "description";
+    }
+}

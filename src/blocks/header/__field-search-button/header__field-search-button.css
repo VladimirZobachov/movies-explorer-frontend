@@ -1,0 +1,13 @@
+.header__field-search-button{
+    display: flex;
+    border: none;
+    min-height: 30px;
+    min-width: 130px;
+    background-color: #F9F9F9;
+    background-image: url("../../../images/find.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    padding-right: 20px;
+    border-right: solid 1px #E8E8E8;
+}

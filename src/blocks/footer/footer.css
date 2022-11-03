@@ -1,0 +1,12 @@
+.footer{
+    min-height: 172px;
+    width: 89%;
+    margin: auto;
+    padding-top: 95px;
+}
+
+@media all and (max-width: 768px) {
+    .footer{
+        padding-top: 53px;
+    }
+}

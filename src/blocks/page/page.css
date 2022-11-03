@@ -1,0 +1,16 @@
+a {
+   text-decoration: none;
+    color: black;
+}
+.page{
+    width: 89%;
+    max-width: 1280px;
+    box-sizing: content-box;
+    margin: auto;
+    font-family: Inter;
+}
+@media all and (max-width: 768px){
+    .page{
+        width: 100%;
+    }
+}

@@ -1,0 +1,11 @@
+.content__movies-item-del{
+    display: flex;
+    min-width: 45px;
+    min-height: 45px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    background-image: url("../../../images/del.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}

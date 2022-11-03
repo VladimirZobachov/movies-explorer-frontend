@@ -1,0 +1,16 @@
+.content__technology{
+    min-height: 325px;
+    background-color: #F5F5F5;
+    margin-top: 100px;
+    padding: 60px 70px 0;
+}
+@media all and (max-width: 768px){
+    .content__technology{
+        padding: 30px 51px 0;
+    }
+}
+@media all and (max-width: 320px){
+    .content__technology{
+        padding: 60px 17px 0;
+    }
+}

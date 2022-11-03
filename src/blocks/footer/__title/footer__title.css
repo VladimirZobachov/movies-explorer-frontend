@@ -1,0 +1,12 @@
+.footer__title{
+    padding-top: 79px;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    color: #A0A0A0;
+    border-bottom: solid 1px #E8E8E8;
+    padding-bottom: 25px;
+}

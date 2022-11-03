@@ -1,0 +1,9 @@
+.footer__link-list{
+    font-family: Inter;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: right;
+    margin: 0;
+    padding: 0;
+}
