@@ -13,7 +13,7 @@ import SearchForm from "./Movies/SearchForm";
 
 function App(){
     return (
-        <CurrentUserContext.Provider>
+        <CurrentUserContext.Provider value="">
             <Switch>
                 <Route exact path="/">
                     <Header/>
