@@ -9,6 +9,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Profile from "./Profile";
 import NotFound from "./NotFound";
+import SearchForm from "./Movies/SearchForm";
 
 function App(){
     return (
@@ -21,11 +22,13 @@ function App(){
                 </Route>
                 <Route exact path="/movies">
                     <Header/>
+                    <SearchForm/>
                     <Movies/>
                     <Footer/>
                 </Route>
                 <Route exact path="/saved-movies">
                     <Header/>
+                    <SearchForm/>
                     <SavedMovies/>
                     <Footer/>
                 </Route>

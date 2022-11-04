@@ -2,7 +2,7 @@ import MoviesCardList from "./MoviesCardList";
 
 function Movies(){
     return(
-        <MoviesCardList/>
+            <MoviesCardList/>
     )
 }
 export default Movies;
