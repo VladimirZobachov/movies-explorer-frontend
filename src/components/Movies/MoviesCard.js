@@ -9,7 +9,7 @@ function MoviesCard(){
                 </div>
                 <button className="content__movies-item-save"></button>
             </div>
-            <img src={film}/>
+            <img src={film} alt="Кадр из фильма"/>
         </li>
     );
 }

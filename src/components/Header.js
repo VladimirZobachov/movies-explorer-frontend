@@ -5,7 +5,7 @@ function Header(){
         <header className="header">
             <ul className="header__top-buttons">
                 <li className="header__top-button header__top-button_logo header__top-button_left">
-                    <a href="/" className="header__logo"><img src={logo} className="header__logo-mouth"/></a></li>
+                    <a href="/" className="header__logo"><img src={logo} className="header__logo-mouth" alt="Лого"/></a></li>
                     <Navigation/>
             </ul>
         </header>

@@ -9,7 +9,7 @@ function MoviesCard(props){
                 </div>
                 <button className="content__movies-item-del"></button>
             </div>
-            <img src={film}/>
+            <img src={film} alt="Кадр из фильма"/>
         </li>
     );
 }

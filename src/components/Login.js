@@ -6,7 +6,7 @@ function Login(){
                 <ul className="content__form-information-list">
                     <li className="header__top-button header__top-button_logo">
                         <a href="/" className="header__logo">
-                        <img src={mouth} className="header__logo-mouth"/>
+                        <img src={mouth} className="header__logo-mouth" alt="Улыбка"/>
                         </a>
                     </li>
                     <li className="content__form-information-item"><h2 className="content__form-information-title">Рады

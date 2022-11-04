@@ -4,7 +4,7 @@ function AboutMe(){
         <section className="content__student" id="student">
             <h2 className="content__section-title">Студент</h2>
             <div className="content__student-content">
-                <img src={avatar} className="content__student-avatar"/>
+                <img src={avatar} className="content__student-avatar" alt="Аватар"/>
                     <div className="content__student-description">
                         <h3 className="content__student-title">Владимир</h3>
                         <p className="content__student-subtitle">Фронтенд разработчик, 36 лет</p>

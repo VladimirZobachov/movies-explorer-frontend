@@ -12,13 +12,13 @@ function Navigation(){
                 <li className="header__top-button"><a href="/movies"><b>Фильмы</b></a></li>
                 <li className="header__top-button header__top-button_left"><a href="/saved-movies">Сохраненные фильмы</a></li>
                 <li className="header__top-button "><a href="/profile" className="header__top-button_profile">Аккаунт</a></li>
-                <li className="header__top-button header__top-button_menu"><img src={IconMenu}/></li>
+                <li className="header__top-button header__top-button_menu"><img src={IconMenu} alt="Меню"/></li>
             </Route>
             <Route exact path="/saved-movies">
                 <li className="header__top-button"><a href="/movies">Фильмы</a></li>
                 <li className="header__top-button header__top-button_left"><a href="/saved-movies"><b>Сохраненные фильмы</b></a></li>
                 <li className="header__top-button "><a href="/profile" className="header__top-button_profile">Аккаунт</a></li>
-                <li className="header__top-button header__top-button_menu"><img src={IconMenu}/></li>
+                <li className="header__top-button header__top-button_menu"><img src={IconMenu} alt="Меню"/></li>
             </Route>
         </Switch>
     )
