@@ -1,15 +1,15 @@
-import Header from './Header';
-import Main from "./Main/Main";
-import {CurrentUserContext} from "../contexts/CurrentUserContext";
-import Footer from "./Footer";
+import Header from '../Header/Header';
+import Main from "../Main/Main";
+import {CurrentUserContext} from "../../contexts/CurrentUserContext";
+import Footer from "../Footer/Footer";
 import {Route, Switch} from "react-router-dom";
-import Movies from "./Movies/Movies";
-import SavedMovies from "./SavedMovies/SavedMovies";
-import Login from "./Login";
-import Register from "./Register";
-import Profile from "./Profile";
-import NotFound from "./NotFound";
-import SearchForm from "./Movies/SearchForm";
+import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
+import Profile from "../Profile/Profile";
+import NotFound from "../NotFound/NotFound";
+import SearchForm from "../Movies/SearchForm/SearchForm";
 
 function App(){
     return (
@@ -33,12 +33,15 @@ function App(){
                     <Footer/>
                 </Route>
                 <Route exact path="/signin">
+                    <Header/>
                     <Login/>
                 </Route>
                 <Route exact path="/signup">
+                    <Header/>
                     <Register/>
                 </Route>
                 <Route exact path="/profile">
+                    <Header/>
                     <Profile/>
                 </Route>
                 <Route exact path="*">

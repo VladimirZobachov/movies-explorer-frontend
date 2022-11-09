@@ -1,4 +1,4 @@
-import NavTab from "./NavTab";
+import NavTab from "../NavTab/NavTab";
 function Promo(){
     return (
         <section className="main__promo">

@@ -1,4 +1,4 @@
-import MoviesCard from "./MoviesCard";
+import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList(props){
     return (

@@ -108,7 +108,7 @@
 
 }
 .main__about-project-timeline-item-title_gray{
-    background-color: #E8E8E8;
+    background-color: #F2F2F2;
     color: #000000;
 }
 .main__about-project-timeline-item-description{
@@ -243,6 +243,10 @@
     background-image: url("../../images/list-element.svg");
     background-repeat: no-repeat;
     background-position: right;
+}
+.main__portfolio-item a{
+    text-decoration: none;
+    color: #000000;
 }
 .main__portfolio-item-end{
     border-bottom: none;

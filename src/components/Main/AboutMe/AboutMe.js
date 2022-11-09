@@ -1,4 +1,4 @@
-import avatar from '../../images/avatar.jpg';
+import avatar from '../../../images/avatar.jpg';
 function AboutMe(){
     return (
         <section className="main__about-me" id="about-me">
