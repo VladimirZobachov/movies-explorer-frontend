@@ -1,8 +1,0 @@
-.header__field-short-films{
-    display: flex;
-    opacity: 0;
-    background-image: url("../../../images/smalltumb.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    padding-left: 25px;
-}

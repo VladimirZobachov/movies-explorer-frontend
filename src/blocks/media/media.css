@@ -1,0 +1,115 @@
+@media all and (max-width: 1280px) {
+    .page{
+        width: 95%;
+    }
+}
+@media all and (max-width: 768px){
+    .main__techs-list{
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+    }
+    .main__about-me-content{
+        grid-template-areas:
+            "avatar"
+            "description";
+    }
+    .main__about-project-list {
+        display: flex;
+        flex-direction: column;
+    }
+    .main__about-me-avatar{
+        justify-self: center;
+    }
+    .header__navigation-item .header__navigation-item-link{
+        display: none;
+    }
+    .header__navigation-button-profile{
+        display: none;
+    }
+    .header__navigation-button-menu{
+        display: grid;
+        background-color: transparent;
+        border: none;
+    }
+    .header__navigation-movies{
+        grid-template-columns: 60px auto auto auto fit-content(100%);
+    }
+    .movies__card-list{
+        grid-template-columns: auto auto;
+        gap: 10px;
+    }
+}
+@media all and (max-width: 320px){
+    .page{
+        width: 100%;
+    }
+    .header{
+        padding: 18px 10px;
+    }
+    .main__title{
+        font-weight: 500;
+        font-size: 27px;
+        max-width: 90%;
+    }
+    .main__techs-content-title{
+        font-weight: 500;
+        font-size: 27px;
+    }
+    .main__nav-tab-item{
+        display: grid;
+        width: 70px;
+        font-weight: 500;
+        font-size: 10px;
+    }
+    .main__techs-content-subtitle {
+        font-size: 12px;
+        max-width: 70%;
+    }
+    .main__section-title{
+        font-size: 18px;
+    }
+    .main__about-project-item-title {
+        font-size: 18px;
+    }
+    .main__about-project-item-description {
+        font-size: 11px;
+    }
+    .movies__search-form{
+        grid-template-columns: auto;
+        background-color: transparent;
+    }
+    .movies__search-form-line{
+        grid-template-columns: auto fit-content(100%);
+    }
+    .movies__card-list{
+        grid-template-columns: auto;
+    }
+    .popup_type_menu{
+        min-width: 100%;
+    }
+    .form__header-list{
+        display: grid;
+        padding: 50px 0 50px;
+    }
+    .form__header-item{
+        justify-items: center;
+    }
+    .form__body{
+        min-height: 250px;
+    }
+    .footer__link-list{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .footer__link-list-item{
+        display: flex;
+    }
+    .footer__link-list-item_copyright{
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        margin: 15px auto;
+        color: #A0A0A0;
+    }
+}

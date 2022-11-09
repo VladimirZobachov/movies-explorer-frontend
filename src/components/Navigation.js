@@ -1,24 +1,63 @@
 import {Route, Switch} from "react-router-dom";
+
 import IconMenu from "../images/icon-menu.svg";
+import logo from "../images/logo.svg";
 
 function Navigation(){
     return (
         <Switch>
             <Route exact path="/">
-                <li className="header__top-button"><a href="/signup">Регистрация</a></li>
-                <li className="header__top-button "><a href="/signin" className="header__top-button_active">Войти</a></li>
+                <ul className="header__navigation">
+                    <li className="header__navigation-item"><a href="/"><img src={ logo } alt="лого"/></a></li>
+                    <li className="header__navigation-item header__navigation-item_button-register">
+                        <a href="/signup">Регистрация</a>
+                    </li>
+                    <li className="header__navigation-item ">
+                        <button className="header__navigation-button-signin">Войти</button>
+                    </li>
+                </ul>
             </Route>
             <Route exact path="/movies">
-                <li className="header__top-button"><a href="/movies"><b>Фильмы</b></a></li>
-                <li className="header__top-button header__top-button_left"><a href="/saved-movies">Сохраненные фильмы</a></li>
-                <li className="header__top-button "><a href="/profile" className="header__top-button_profile">Аккаунт</a></li>
-                <li className="header__top-button header__top-button_menu"><img src={IconMenu} alt="Меню"/></li>
+                <ul className="header__navigation-movies">
+                    <li className="header__navigation-item header__navigation-item_logo">
+                        <a href="/"><img src={logo} alt="лого"/></a>
+                    </li>
+                    <li className="header__navigation-item">
+                        <a href="/movies" className="header__navigation-item-link">Фильмы</a>
+                    </li>
+                    <li className="header__navigation-item">
+                        <a href="/saved-movies" className="header__navigation-item-link">Сохраненные фильмы</a>
+                    </li>
+                    <li className="header__navigation-item">
+                        <button className="header__navigation-button-profile" type="button">Аккаунт</button>
+                    </li>
+                    <li className="header__navigation-item header__navigation-button-menu">
+                        <button className="header__navigation-button-menu" type="button">
+                            <img src={IconMenu} className="header__navigation-item-menu" alt="меню"/>
+                        </button>
+                    </li>
+                </ul>
             </Route>
             <Route exact path="/saved-movies">
-                <li className="header__top-button"><a href="/movies">Фильмы</a></li>
-                <li className="header__top-button header__top-button_left"><a href="/saved-movies"><b>Сохраненные фильмы</b></a></li>
-                <li className="header__top-button "><a href="/profile" className="header__top-button_profile">Аккаунт</a></li>
-                <li className="header__top-button header__top-button_menu"><img src={IconMenu} alt="Меню"/></li>
+                <ul className="header__navigation-movies">
+                    <li className="header__navigation-item header__navigation-item_logo">
+                        <a href="/"><img src={logo} alt="лого"/></a>
+                    </li>
+                    <li className="header__navigation-item">
+                        <a href="/movies" className="header__navigation-item-link">Фильмы</a>
+                    </li>
+                    <li className="header__navigation-item">
+                        <a href="/saved-movies" className="header__navigation-item-link">Сохраненные фильмы</a>
+                    </li>
+                    <li className="header__navigation-item">
+                        <button className="header__navigation-button-profile" type="button">Аккаунт</button>
+                    </li>
+                    <li className="header__navigation-item header__navigation-button-menu">
+                        <button className="header__navigation-button-menu" type="button">
+                            <img src={IconMenu} className="header__navigation-item-menu" alt="меню"/>
+                        </button>
+                    </li>
+                </ul>
             </Route>
         </Switch>
     )

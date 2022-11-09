@@ -1,16 +1,18 @@
 function SearchForm(){
     return (
-        <section className="header__search-section">
-            <div className="header__searching-block">
-                <input type="text" placeholder="Фильмы" className="header__field-search-films"/>
-                    <input type="submit" className="header__field-search-button" value=""/>
-                        <label className="header__field-search-switch">
-                            <input type="checkbox"/>
-                                <span className="header__field-search-slider header__field-search-slider_round"></span>
-                        </label>
-                        <span className="header__field-search-switch-text">Короткометражки</span>
+        <form className="movies__search-form">
+            <div className="movies__search-form-line">
+                <input type="text" placeholder="Фильм" className="movies__search-form-input"/>
+                    <button type="button" className="movies__search-button" value="search"></button>
             </div>
-        </section>
+            <div className="movies__search-form-switch">
+                <label className="movies__search-switch">
+                    <input type="checkbox" />
+                        <span className="movies__search-switch-slider movies__search-switch-slider_round"></span>
+                </label>
+                <span className="movies__search-switch-text">Короткометражки</span>
+            </div>
+        </form>
     );
 }
 export default SearchForm;

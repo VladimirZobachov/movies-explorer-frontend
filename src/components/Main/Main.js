@@ -7,12 +7,14 @@ import Portfolio from "./Portfolio";
 
 function Main(){
     return (
-        <CurrentUserContext.Provider>
-            <Promo/>
-            <AboutProject/>
-            <Techs/>
-            <AboutMe/>
-            <Portfolio/>
+        <CurrentUserContext.Provider value="1">
+            <main className="main">
+                <Promo/>
+                <AboutProject/>
+                <Techs/>
+                <AboutMe/>
+                <Portfolio/>
+            </main>
         </CurrentUserContext.Provider>
     );
 }

@@ -1,11 +1,11 @@
 function Portfolio(){
     return (
-        <section className="content__student-portfolio">
-        <h3 className="content__student-portfolio-title">Портфолио</h3>
-            <ul className="content__student-portfolio-list">
-                <li className="content__student-portfolio-element">Статичный сайт</li>
-                <li className="content__student-portfolio-element">Адаптивный сайт</li>
-                <li className="content__student-portfolio-element">Одностраничное приложение</li>
+        <section className="main__portfolio">
+            <h3 className="main__portfolio-title">Портфолио</h3>
+            <ul className="main__portfolio-list">
+                <li className="main__portfolio-item">Статичный сайт</li>
+                <li className="main__portfolio-item">Адаптивный сайт</li>
+                <li className="main__portfolio-item main__portfolio-item-end">Одностраничное приложение</li>
             </ul>
         </section>
     );

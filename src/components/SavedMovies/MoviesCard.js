@@ -1,15 +1,13 @@
 import film from "../../images/film.png";
 function MoviesCard(props){
     return(
-        <li className="content__movies-item">
-            <div className="content__movies-item-header">
-                <div className="content__movies-item-content">
-                    <h3 className="content__movies-item-title">33 слова о дизайне</h3>
-                    <span className="content__movies-item-duration">1ч 47м</span>
-                </div>
-                <button className="content__movies-item-del"></button>
+        <li className="movies__card">
+            <div className="movies__card-header">
+                <h3 className="movies__card-title">33 слова о дизайне</h3>
+                <button type="button" className="movies__card-save"></button>
+                <span className="movies__card-duration">1ч 47м</span>
             </div>
-            <img src={film} alt="Кадр из фильма"/>
+            <img src={film} alt="карточка фильма"/>
         </li>
     );
 }

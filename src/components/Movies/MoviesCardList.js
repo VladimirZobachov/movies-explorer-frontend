@@ -2,14 +2,17 @@ import MoviesCard from "./MoviesCard";
 
 function MoviesCardList(props){
     return (
-        <main className="content">
-            <section className="content__movies">
-                <ul className="content__movies-list">
-                    <MoviesCard/><MoviesCard/><MoviesCard/><MoviesCard/><MoviesCard/><MoviesCard/>
-                </ul>
-                <input type="button" value="Ещё" className="content__button-more-movies"/>
-            </section>
-        </main>
+        <section className="movies">
+            <ul className="movies__card-list">
+                <MoviesCard/>
+                <MoviesCard/>
+                <MoviesCard/>
+                <MoviesCard/>
+                <MoviesCard/>
+                <MoviesCard/>
+            </ul>
+            <button type="button" className="movies__card-list-more">Ещё</button>
+        </section>
     );
 }
 
