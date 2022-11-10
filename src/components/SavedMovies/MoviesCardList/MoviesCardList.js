@@ -1,4 +1,4 @@
-import MoviesCard from "./MoviesCard";
+import MoviesCard from "../../SavedMovies/MoviesCard/MoviesCard";
 
 function MoviesCardList(){
     return (

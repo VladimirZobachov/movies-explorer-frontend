@@ -1,4 +1,4 @@
-import film from "../../images/film.png";
+import film from "../../../images/film.png";
 function MoviesCard(props){
     return(
         <li className="movies__card">
