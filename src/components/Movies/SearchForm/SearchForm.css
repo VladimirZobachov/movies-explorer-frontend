@@ -1,4 +1,3 @@
-
 .movies__search-form{
     display: grid;
     margin: 61px auto;
@@ -10,6 +9,7 @@
     background: #F9F9F9;
     border-radius: 9px;
 }
+
 .movies__search-form-line{
     display: grid;
     margin: auto;
@@ -21,6 +21,10 @@
     border-radius: 9px;
     justify-items: start;
     align-items: center;
+}
+.movies__search-form-line:hover{
+    box-sizing: border-box;
+    border: solid 1px #000000;
 }
 .movies__search-form-switch{
     display: grid;
@@ -48,6 +52,7 @@
     padding-left: 55px;
     border: none;
 }
+
 .movies__search-form-input:focus{
     outline: none;
 }

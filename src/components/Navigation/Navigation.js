@@ -9,7 +9,7 @@ function Navigation(){
             <Route exact path="/">
                 <header className="header">
                 <ul className="header__navigation">
-                    <li className="header__navigation-item"><a href="/Users/vladislavasimac/PhpstormProjects/movies-explorer-frontend/public"><img src={ logo } alt="лого"/></a></li>
+                    <li className="header__navigation-item"><a href="/"><img src={ logo } alt="лого"/></a></li>
                     <li className="header__navigation-item header__navigation-item_button-register">
                         <a href="/signup">Регистрация</a>
                     </li>
@@ -23,7 +23,7 @@ function Navigation(){
                 <header className="header">
                 <ul className="header__navigation-movies">
                     <li className="header__navigation-item header__navigation-item_logo">
-                        <a href="/Users/vladislavasimac/PhpstormProjects/movies-explorer-frontend/public"><img src={logo} alt="лого"/></a>
+                        <a href="/"><img src={logo} alt="лого"/></a>
                     </li>
                     <li className="header__navigation-item">
                         <a href="/movies" className="header__navigation-item-link">Фильмы</a>
@@ -46,7 +46,7 @@ function Navigation(){
                 <header className="header">
                 <ul className="header__navigation-movies">
                     <li className="header__navigation-item header__navigation-item_logo">
-                        <a href="/Users/vladislavasimac/PhpstormProjects/movies-explorer-frontend/public"><img src={logo} alt="лого"/></a>
+                        <a href="/"><img src={logo} alt="лого"/></a>
                     </li>
                     <li className="header__navigation-item">
                         <a href="/movies" className="header__navigation-item-link">Фильмы</a>
@@ -68,7 +68,7 @@ function Navigation(){
             <Route exact path="/signin">
                 <header className="form__header">
                     <ul className="form__header-list">
-                        <li className="form__header-item"><a href="/Users/vladislavasimac/PhpstormProjects/movies-explorer-frontend/public"><img src={logo} alt="лого"/></a></li>
+                        <li className="form__header-item"><a href="/"><img src={logo} alt="лого"/></a></li>
                         <li className="form__header-item"><h1 className="form__header-title">Рады видеть!</h1></li>
                     </ul>
                 </header>
@@ -76,7 +76,7 @@ function Navigation(){
             <Route exact path="/signup">
                 <header className="form__header">
                     <ul className="form__header-list">
-                        <li className="form__header-item"><a href="/Users/vladislavasimac/PhpstormProjects/movies-explorer-frontend/public"><img src={logo} alt="лого"/></a></li>
+                        <li className="form__header-item"><a href="/"><img src={logo} alt="лого"/></a></li>
                         <li className="form__header-item"><h1 className="form__header-title">Добро пожаловать!</h1></li>
                     </ul>
                 </header>
@@ -84,8 +84,9 @@ function Navigation(){
             <Route exact path="/profile">
                 <header className="header">
                     <ul className="header__navigation-movies">
-                        <li className="header__navigation-item header__navigation-item_logo"><a href="/Users/vladislavasimac/PhpstormProjects/movies-explorer-frontend/public"><img
-                            src={logo} alt="лого"/></a></li>
+                        <li className="header__navigation-item header__navigation-item_logo">
+                            <a href="/"><img src={logo} alt="лого"/></a>
+                        </li>
                         <li className="header__navigation-item">
                             <a href="/movies" className="header__navigation-item-link">Фильмы</a>
                         </li>
