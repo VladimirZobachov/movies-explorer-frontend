@@ -1,0 +1,61 @@
+.main__about-project{
+    max-width: 1139px;
+    margin: auto;
+}
+.main__about-project-list{
+    display: grid;
+    grid-template-columns: auto auto;
+    list-style-type: none;
+    padding: 52px 0 0 0;
+    gap: 15px;
+    margin: 0;
+}
+.main__about-project-item{
+    display: grid;
+}
+.main__about-project-item-title{
+    margin: 19px 0 27px 0;
+    font-size: 19px;
+    font-weight: normal;
+}
+.main__about-project-item-description{
+    font-size: 16px;
+    font-weight: normal;
+}
+.main__about-project-timeline{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 20% auto;
+    justify-items: center;
+    list-style-type: none;
+    padding: 97px 0 99px 0;
+    margin: 0;
+}
+.main__about-project-timeline-item{
+    text-align: center;
+    width: 100%;
+    min-width: 50%;
+}
+.main__about-project-timeline-item-title{
+    display: grid;
+    margin: 0;
+    min-height: 35px;
+    align-items: center;
+    font-size: 14px;
+    font-weight: normal;
+}
+.main__about-project-timeline-item-title_black{
+    background-color: #000000;
+    color: #ffffff;
+
+}
+.main__about-project-timeline-item-title_gray{
+    background-color: #F2F2F2;
+    color: #000000;
+}
+.main__about-project-timeline-item-description{
+    margin: 18px 0 0 0;
+    font-size: 14px;
+    font-weight: normal;
+    color: #E8E8E8;
+}

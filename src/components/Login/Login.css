@@ -1,0 +1,98 @@
+.form{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    margin: auto;
+    width: 90%;
+    max-width: 410px;
+}
+.form__header{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    margin: auto;
+    width: 90%;
+    max-width: 410px;
+}
+.form__header-list{
+    display: grid;
+    width: 100%;
+    list-style-type: none;
+    padding: 150px 0 50px;
+}
+.form__header-item{
+    display: grid;
+}
+.form__header-title{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+}
+.form__body{
+    width: 100%;
+    min-height: 300px;
+}
+.form__body-list{
+    display: grid;
+    list-style-type: none;
+    padding: 0;
+}
+.form__body-item{
+    display: grid;
+    padding: 10px 0;
+}
+.form__body-item label{
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #A0A0A0;
+    padding-bottom: 10px;
+}
+.form__body-item input{
+    border: none;
+    border-bottom: solid 1px #E8E8E8;
+}
+.form__body-item input:focus{
+    outline: none;
+    border-bottom: solid 1px #000000;
+}
+.form__footer{
+    display: grid;
+    margin: 50px auto;
+    width: 100%;
+}
+.form__footer-list{
+    display: grid;
+    list-style-type: none;
+    padding: 0;
+    justify-items: center;
+}
+.form__footer-item{
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+}
+.form__footer-button-register{
+    display: grid;
+    width: 100%;
+    min-height: 45px;
+    border: none;
+    border-radius: 5px;
+    background-color: #000000;
+    color: #ffffff;
+    align-items: center;
+    cursor: pointer;
+}
+.form__footer-question{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #A0A0A0;
+}
+.form__footer-link{
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}

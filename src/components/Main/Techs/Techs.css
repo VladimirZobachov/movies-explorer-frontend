@@ -1,0 +1,60 @@
+.main__techs{
+    width: 100%;
+    background-color: #F5F5F5;
+}
+.main__section-title-techs{
+    display: grid;
+    max-width: 1139px;
+    width: 90%;
+    margin: auto;
+    border-bottom: solid black 1px;
+    font-size: 22px;
+    font-weight: normal;
+    padding-bottom: 22px;
+    padding-top: 114px
+}
+.main__techs-content{
+    display: grid;
+    max-width: 1139px;
+    margin: auto;
+}
+.main__techs-content-title{
+    display: inline-grid;
+    margin: auto;
+    font-weight: 500;
+    font-size: 47px;
+    max-width: 60%;
+    padding-top: 89px;
+    padding-bottom: 30px;
+}
+.main__techs-content-subtitle{
+    display: inline-grid;
+    margin: auto;
+    font-weight: 500;
+    font-size: 16px;
+    max-width: 40%;
+    text-align: center;
+}
+.main__techs-list{
+    display: grid;
+    max-width: 1139px;
+    grid-template-columns: auto fit-content(100%) fit-content(100%) fit-content(100%) fit-content(100%) fit-content(100%) fit-content(100%) fit-content(100%) auto;
+    list-style-type: none;
+    gap: 10px;
+    padding: 100px 0 100px 0;
+    margin: 0;
+}
+.main__techs-item{
+    display: grid;
+    width: 90px;
+    height: 60px;
+    background-color: #E8E8E8;
+    border-radius: 10px;
+    align-items: center;
+    justify-items: center;
+    font-weight: 500;
+    font-size: 12px;
+}
+.main__techs-item_start{
+    grid-column-start: 2;
+}

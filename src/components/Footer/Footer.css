@@ -1,0 +1,29 @@
+.footer{
+    width: 100%;
+    max-width: 1139px;
+    margin: auto;
+    text-align: center;
+}
+.footer__title{
+    font-size: 14px;
+    font-weight: normal;
+    color: #E8E8E8;
+    padding: 196px 0 17px;
+    border-bottom: solid 1px #E8E8E8;
+}
+.footer__link-list{
+    display: grid;
+    list-style-type: none;
+    padding: 5px 0;
+    margin: 0;
+    grid-template-columns: fit-content(100%) auto fit-content(100%) fit-content(100%);
+    gap: 15px;
+    font-size: 14px;
+    font-weight: normal;
+}
+footer__link-list-item{
+    display: grid;
+}
+.footer__link-list-item-partners{
+    grid-column-start: 3;
+}

@@ -1,0 +1,25 @@
+.main{
+    display: grid;
+    width: 100%;
+    justify-items: center;
+}
+.main__title{
+    display: grid;
+    margin: auto;
+    font-weight: 500;
+    font-size: 47px;
+    max-width: 60%;
+    padding-top: 162px;
+    padding-bottom: 30px;
+}
+.main__section-title{
+    display: grid;
+    max-width: 1139px;
+    margin: auto;
+    border-bottom: solid black 1px;
+    font-size: 22px;
+    font-weight: normal;
+    padding-bottom: 22px;
+    padding-top: 114px
+}
+
