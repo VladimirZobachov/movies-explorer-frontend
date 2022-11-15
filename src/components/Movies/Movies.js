@@ -7,12 +7,13 @@ import Profile from "../Profile/Profile";
 import SavedMovies from "../SavedMovies/SavedMovies";
 
 function Movies(props){
+
     return(
         <Switch>
             <Route exact path="/movies">
                 <Header/>
                 <SearchForm/>
-                <Movies films={props.films} />
+                <MoviesCardList films={props.films} />
                 <Footer/>
             </Route>
             <Route exact path="/saved-movies">

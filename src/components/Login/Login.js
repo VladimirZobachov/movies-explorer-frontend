@@ -42,7 +42,7 @@ function Login({onLogin}){
             <section className="form__footer">
                 <ul className="form__footer-list">
                     <li className="form__footer-item">
-                        <button type="submit" className="form__footer-button-register" onClick={onLogin}>Войти</button>
+                        <button type="submit" className="form__footer-button-register">Войти</button>
                     </li>
                     <li className="form__footer-item">
                         <span className="form__footer-question">Ещё не зарегистрированы?</span>

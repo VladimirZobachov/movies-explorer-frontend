@@ -3,33 +3,37 @@ import Main from "../Main/Main";
 import * as MainApi from "../../utils/MainApi";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import Footer from "../Footer/Footer";
-import {Route, Switch} from "react-router-dom";
+import {Route, Switch, useHistory} from "react-router-dom";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Movies from "../Movies/Movies";
-import SavedMovies from "../SavedMovies/SavedMovies";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
-import Profile from "../Profile/Profile";
 import NotFound from "../NotFound/NotFound";
-import SearchForm from "../Movies/SearchForm/SearchForm";
 import {useEffect, useState} from "react";
 
 
 function App(){
     const [films, setFilms] = useState([]);
-    const [currentUser, setCurrentUser] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
+    const history = useHistory();
+
+    useEffect(()=>{
+        if(loggedIn){
+            history.push("/movies")
+        }
+    }, [loggedIn, history])
+
     useEffect(()=>{
         fetch("https://api.nomoreparties.co/beatfilm-movies", {
-                    method: "GET"
-                })
-                .then((response) => {
-                    return response.json();
-                })
-                .then((data)=> {
-                    setFilms(data);
-                })
-        }, [])
+            method: "GET"
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data)=> {
+                setFilms(data);
+            })
+    }, [])
 
     const onLogin = (email, password) => {
         return MainApi
@@ -41,7 +45,7 @@ function App(){
                 console.log(e);
             });
     };
-    
+
     return (
         <CurrentUserContext.Provider value="1">
             <Switch>
@@ -52,6 +56,7 @@ function App(){
                 </Route>
                 <ProtectedRoute exact path="/movies"
                                 films = {films}
+                                loggedIn = {loggedIn}
                                 component={Movies} />
                 <Route exact path="/signin">
                     <Header/>

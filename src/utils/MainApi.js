@@ -31,8 +31,8 @@ export const authorize = (email, password) => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            "email": email,
-            "password": password
+            'email': email,
+            'password': password
         }),
     })
         .then((res)=>{
