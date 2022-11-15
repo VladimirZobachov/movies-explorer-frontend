@@ -10,12 +10,16 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import NotFound from "../NotFound/NotFound";
 import {useEffect, useState} from "react";
+import SearchForm from "../Movies/SearchForm/SearchForm";
+import SavedMovies from "../SavedMovies/SavedMovies";
+import Profile from "../Profile/Profile";
 
 
 function App(){
     const [films, setFilms] = useState([]);
     const [loggedIn, setLoggedIn] = useState(false);
     const history = useHistory();
+
 
     useEffect(()=>{
         if(loggedIn){
@@ -58,6 +62,17 @@ function App(){
                                 films = {films}
                                 loggedIn = {loggedIn}
                                 component={Movies} />
+
+                <Route exact path="/saved-movies">
+                    <Header/>
+                    <SearchForm/>
+                    <SavedMovies/>
+                    <Footer/>
+                </Route>
+                <Route exact path="/profile">
+                    <Header/>
+                    <Profile/>
+                </Route>
                 <Route exact path="/signin">
                     <Header/>
                     <Login onLogin={onLogin}/>

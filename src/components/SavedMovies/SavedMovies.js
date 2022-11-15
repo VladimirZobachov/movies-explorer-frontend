@@ -1,8 +1,14 @@
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
-function SavedMovies(){
+function SavedMovies(props){
     return(
-        <MoviesCardList/>
+        <>
+            <Header/>
+            <MoviesCardList films={props.films} />
+            <Footer/>
+        </>
     );
 }
 
