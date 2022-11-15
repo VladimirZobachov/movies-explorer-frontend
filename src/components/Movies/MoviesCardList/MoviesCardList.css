@@ -17,3 +17,6 @@
     align-content: center;
     cursor: pointer;
 }
+.movies__card-list-more_closed{
+    display: none;
+}
