@@ -20,7 +20,7 @@ export const register = (email, password, name) => {
         }),
     })
         .then((res)=>{
-            check(res);
+            return check(res);
         })
 }
 
@@ -28,7 +28,7 @@ export const authorize = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
         method: 'POST',
         headers: {
-            "Content-Type": "application/json"
+            'Content-Type': 'application/json;charset=utf-8',
         },
         body: JSON.stringify({
             'email': email,
@@ -36,20 +36,20 @@ export const authorize = (email, password) => {
         }),
     })
         .then((res)=>{
-            check(res);
+            return check(res);
         })
 }
 
-export const getContent = (jwt) => {
+export const getUser = (jwt) => {
+    const token = jwt.replace(/\"/g, "");
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
-            "Content-Type": "application/json",
-            'Authorization': `Bearer ${jwt}`,
+            'Authorization': `Bearer ${token}`,
         }
     })
-        .then((res)=>{
-            check(res);
-        })
+    .then((res)=>{
+        return check(res);
+    })
 }
 

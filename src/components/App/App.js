@@ -10,7 +10,6 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import NotFound from "../NotFound/NotFound";
 import {useEffect, useState} from "react";
-import SearchForm from "../Movies/SearchForm/SearchForm";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 
@@ -19,13 +18,7 @@ function App(){
     const [films, setFilms] = useState([]);
     const [loggedIn, setLoggedIn] = useState(false);
     const history = useHistory();
-
-
-    useEffect(()=>{
-        if(loggedIn){
-            history.push("/movies")
-        }
-    }, [loggedIn, history])
+    const [currentUser, setCurrentUser] = useState([]);
 
     useEffect(()=>{
         fetch("https://api.nomoreparties.co/beatfilm-movies", {
@@ -39,40 +32,63 @@ function App(){
             })
     }, [])
 
+    const tokenCheck = () => {
+        const jwt = localStorage.getItem('jwt');
+        if (!jwt) {
+            return;
+        }
+        MainApi.getUser(jwt)
+            .then((user) => {
+                setCurrentUser(user);
+            })
+            .catch((err)=>{
+                console.log(err);
+            });
+    };
+
     const onLogin = (email, password) => {
         return MainApi
             .authorize(email, password)
-            .then((user) => {
+            .then((jwt) => {
                 setLoggedIn(true);
+                localStorage.setItem('jwt', JSON.stringify(jwt.token));
             })
             .catch((e) => {
                 console.log(e);
             });
     };
 
+    useEffect(() => {
+        tokenCheck();
+    }, []);
+
+    useEffect(()=>{
+        if(loggedIn){
+            history.push("/movies");
+        }
+    }, [loggedIn, history])
+
     return (
-        <CurrentUserContext.Provider value="1">
+        <CurrentUserContext.Provider value={currentUser}>
             <Switch>
                 <Route exact path="/">
-                    <Header/>
+                    <Header loggedIn = {loggedIn} />
                     <Main/>
                     <Footer/>
                 </Route>
                 <ProtectedRoute exact path="/movies"
                                 films = {films}
                                 loggedIn = {loggedIn}
-                                component={Movies} />
-
-                <Route exact path="/saved-movies">
-                    <Header/>
-                    <SearchForm/>
-                    <SavedMovies/>
-                    <Footer/>
-                </Route>
-                <Route exact path="/profile">
-                    <Header/>
-                    <Profile/>
-                </Route>
+                                component = {Movies} />
+                <ProtectedRoute exact path="/saved-movies"
+                                films = {films}
+                                loggedIn = {loggedIn}
+                                component = {SavedMovies}
+                />
+                <ProtectedRoute exact path="/profile"
+                                loggedIn = {loggedIn}
+                                component = {Profile}
+                />
                 <Route exact path="/signin">
                     <Header/>
                     <Login onLogin={onLogin}/>
