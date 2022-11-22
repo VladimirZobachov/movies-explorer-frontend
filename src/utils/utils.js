@@ -1,5 +1,5 @@
 const options = {
-    baseUrl: 'https://api.nomoreparties.co'
-}
+  baseUrl: 'https://api.nomoreparties.co',
+};
 
 export default options;

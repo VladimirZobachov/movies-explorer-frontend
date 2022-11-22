@@ -1,15 +1,15 @@
-import MoviesCardList from "./MoviesCardList/MoviesCardList";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import MoviesCardList from './MoviesCardList/MoviesCardList';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
-function SavedMovies(props){
-    return(
-        <>
-            <Header/>
-            <MoviesCardList films={props.films} />
-            <Footer/>
-        </>
-    );
+function SavedMovies({ loggedIn, films }) {
+  return (
+    <>
+      <Header loggedIn={loggedIn} />
+      <MoviesCardList films={films} />
+      <Footer />
+    </>
+  );
 }
 
 export default SavedMovies;

@@ -1,15 +1,15 @@
-import MoviesCard from "../../SavedMovies/MoviesCard/MoviesCard";
+import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList(){
-    return (
-        <section className="movies">
-            <ul className="movies__card-list">
-                <MoviesCard/>
-                <MoviesCard/>
-                <MoviesCard/>
-            </ul>
-        </section>
-    );
+function MoviesCardList() {
+  return (
+    <section className="movies">
+      <ul className="movies__card-list">
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+      </ul>
+    </section>
+  );
 }
 
 export default MoviesCardList;
