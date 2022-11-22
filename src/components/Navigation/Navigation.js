@@ -1,3 +1,4 @@
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import IconMenu from '../../images/icon-menu.svg';
 import logo from '../../images/logo.svg';

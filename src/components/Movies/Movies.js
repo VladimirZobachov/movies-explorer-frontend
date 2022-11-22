@@ -1,3 +1,4 @@
+import React from 'react';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import Header from '../Header/Header';
 import SearchForm from './SearchForm/SearchForm';

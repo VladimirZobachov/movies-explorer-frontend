@@ -1,3 +1,4 @@
+import React from 'react';
 import Header from '../Header/Header';
 
 function Profile({ loggedIn }) {
@@ -10,6 +11,7 @@ function Profile({ loggedIn }) {
           <ul className="profile__list">
             <li className="profile__item profile__item_underline">
               <span>Email</span>
+              {/* eslint-disable-next-line react/react-in-jsx-scope */}
               <span>zobachov@gmail.com</span>
             </li>
             <li className="profile__item">

@@ -1,3 +1,4 @@
+import React from 'react';
 import avatar from '../../../images/avatar.jpg';
 
 function AboutMe() {

@@ -1,3 +1,4 @@
+import React from 'react';
 import film from '../../../images/film.png';
 
 function MoviesCard(props) {

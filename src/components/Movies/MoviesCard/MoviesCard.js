@@ -1,3 +1,5 @@
+import React from 'react';
+
 function MoviesCard(props) {
   return (
     <li className="movies__card">

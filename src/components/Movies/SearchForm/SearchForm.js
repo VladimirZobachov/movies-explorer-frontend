@@ -1,3 +1,5 @@
+import React from 'react';
+
 function SearchForm() {
   return (
     <form className="movies__search-form">

@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import * as MainApi from '../../utils/MainApi';
@@ -38,6 +38,7 @@ function App() {
       .then((user) => {
         if (user) {
           setLoggedIn(true);
+          setCurrentUser(user);
         }
       })
       .catch((err) => {
