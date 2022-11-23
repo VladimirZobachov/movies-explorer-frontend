@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {Redirect, Route, Switch, useHistory, useLocation} from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import * as MainApi from '../../utils/MainApi';
@@ -18,6 +18,31 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState('');
   const history = useHistory();
+  const location = useLocation();
+
+  useEffect(() => {
+    const path = location.pathname;
+    const jwt = localStorage.getItem('jwt');
+    if (!jwt) {
+      return;
+    }else{
+      MainApi.getUser(jwt)
+          .then((user) => {
+            if (user) {
+              setLoggedIn(true);
+              setCurrentUser(user);
+              history.push(path);
+            }
+          })
+          .then(()=>{
+            console.log(loggedIn);
+            console.log(currentUser);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    }
+  },[loggedIn]);
 
   useEffect(() => {
     fetch('https://api.nomoreparties.co/beatfilm-movies', {
@@ -28,23 +53,6 @@ function App() {
         setFilms(data);
       });
   }, []);
-
-  function tokenCheck() {
-    const jwt = localStorage.getItem('jwt');
-    if (!jwt) {
-      return;
-    }
-    MainApi.getUser(jwt)
-      .then((user) => {
-        if (user) {
-          setLoggedIn(true);
-          setCurrentUser(user);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
 
   const onLogin = (email, password) => MainApi
     .authorize(email, password)
@@ -57,9 +65,14 @@ function App() {
       console.log(e);
     });
 
-  useEffect(() => {
-    tokenCheck();
-  }, [loggedIn, history]);
+  const onRegister = (email, password, name) => MainApi
+      .register(email, password, name)
+      .then(()=>{
+
+      })
+      .catch((e) => {
+          console.log(e);
+      });
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -90,10 +103,11 @@ function App() {
           component={Profile}
         />
         <Route exact path="/signin">
-          <Login onLogin={onLogin} />
+            {!loggedIn ? (<Login onLogin={onLogin} />) : (<Redirect to='/'/>)}
         </Route>
+            {!loggedIn ? ( <Register onRegister={onRegister}/>) : (<Redirect to='/'/>)}
         <Route exact path="/signup">
-          <Register />
+
         </Route>
         <Route exact path="*">
           <NotFound />
