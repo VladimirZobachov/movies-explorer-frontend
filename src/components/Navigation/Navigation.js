@@ -13,7 +13,7 @@ function Navigation() {
               <a href="/"><img src={logo} alt="лого" /></a>
             </li>
             <li className="header__navigation-item">
-              <b><a href="/movies" className="header__navigation-item-link">Фильмы</a></b>
+              <a href="/movies" className="header__navigation-item-link">Фильмы</a>
             </li>
             <li className="header__navigation-item">
               <a href="/saved-movies" className="header__navigation-item-link">Сохраненные фильмы</a>

@@ -16,7 +16,7 @@ import Profile from '../Profile/Profile';
 function App() {
   const [films, setFilms] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState('');
+  const [currentUser, setCurrentUser] = useState({});
   const history = useHistory();
   const location = useLocation();
 
@@ -65,6 +65,13 @@ function App() {
       console.log(e);
     });
 
+  const onLogout = () => {
+    localStorage.clear();
+    setLoggedIn(false);
+    setCurrentUser({});
+    history.push('/');
+  }
+
   const onRegister = (email, password, name) => MainApi
       .register(email, password, name)
       .then(()=>{
@@ -100,14 +107,14 @@ function App() {
           exact
           path="/profile"
           loggedIn={loggedIn}
+          onLogout={onLogout}
           component={Profile}
         />
         <Route exact path="/signin">
             {!loggedIn ? (<Login onLogin={onLogin} />) : (<Redirect to='/'/>)}
         </Route>
-            {!loggedIn ? ( <Register onRegister={onRegister}/>) : (<Redirect to='/'/>)}
         <Route exact path="/signup">
-
+           {!loggedIn ? ( <Register onRegister={onRegister}/>) : (<Redirect to='/'/>)}
         </Route>
         <Route exact path="*">
           <NotFound />

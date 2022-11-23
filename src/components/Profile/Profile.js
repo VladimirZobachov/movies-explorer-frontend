@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header/Header';
 
-function Profile({ loggedIn }) {
+function Profile({ loggedIn, onLogout }) {
   return (
     <>
       <Header loggedIn={loggedIn} />
@@ -11,7 +11,6 @@ function Profile({ loggedIn }) {
           <ul className="profile__list">
             <li className="profile__item profile__item_underline">
               <span>Email</span>
-              {/* eslint-disable-next-line react/react-in-jsx-scope */}
               <span>zobachov@gmail.com</span>
             </li>
             <li className="profile__item">
@@ -26,7 +25,7 @@ function Profile({ loggedIn }) {
               <button type="button">Редактировать</button>
             </li>
             <li className="profile__item-link">
-              <button type="button" className="profile__item-link_important">Выйти из аккаунта</button>
+              <button type="button" className="profile__item-link_important" onClick={onLogout}>Выйти из аккаунта</button>
             </li>
           </ul>
         </section>
