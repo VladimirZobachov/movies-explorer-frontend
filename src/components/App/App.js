@@ -3,6 +3,7 @@ import {Redirect, Route, Switch, useHistory, useLocation} from 'react-router-dom
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import * as MainApi from '../../utils/MainApi';
+import moviesApi from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -14,11 +15,15 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 
 function App() {
-  const [films, setFilms] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const history = useHistory();
   const location = useLocation();
+
+  const goBack = () => {
+    history.goBack();
+  }
 
   useEffect(() => {
     const path = location.pathname;
@@ -34,10 +39,6 @@ function App() {
               history.push(path);
             }
           })
-          .then(()=>{
-            console.log(loggedIn);
-            console.log(currentUser);
-          })
           .catch((err) => {
             console.log(err);
           });
@@ -45,13 +46,14 @@ function App() {
   },[loggedIn]);
 
   useEffect(() => {
-    fetch('https://api.nomoreparties.co/beatfilm-movies', {
-      method: 'GET',
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setFilms(data);
-      });
+    moviesApi
+        .getMovies()
+        .then((movies)=>{
+          setMovies(movies);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
   }, []);
 
   const onLogin = (email, password) => MainApi
@@ -74,8 +76,9 @@ function App() {
 
   const onRegister = (email, password, name) => MainApi
       .register(email, password, name)
-      .then(()=>{
-
+      .then((user)=>{
+          setCurrentUser(user);
+          onLogin(email, password);
       })
       .catch((e) => {
           console.log(e);
@@ -92,14 +95,14 @@ function App() {
         <ProtectedRoute
           exact
           path="/movies"
-          films={films}
+          movies={movies}
           loggedIn={loggedIn}
           component={Movies}
         />
         <ProtectedRoute
           exact
           path="/saved-movies"
-          films={films}
+          movies={movies}
           loggedIn={loggedIn}
           component={SavedMovies}
         />
@@ -117,7 +120,7 @@ function App() {
            {!loggedIn ? ( <Register onRegister={onRegister}/>) : (<Redirect to='/'/>)}
         </Route>
         <Route exact path="*">
-          <NotFound />
+          <NotFound goBack = {goBack}/>
         </Route>
       </Switch>
 

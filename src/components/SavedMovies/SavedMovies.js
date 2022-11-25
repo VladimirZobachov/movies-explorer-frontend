@@ -3,11 +3,11 @@ import MoviesCardList from './MoviesCardList/MoviesCardList';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function SavedMovies({ loggedIn, films }) {
+function SavedMovies({ loggedIn, movies }) {
   return (
     <>
       <Header loggedIn={loggedIn} />
-      <MoviesCardList films={films} />
+      <MoviesCardList movies={movies} />
       <Footer />
     </>
   );

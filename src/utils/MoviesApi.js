@@ -1,6 +1,6 @@
 import options from './utils';
 
-class Api {
+class MoviesApi {
   constructor(options) {
     this._options = options;
   }
@@ -12,13 +12,18 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   };
 
-  getInitialCards() {
-    return fetch(`${this._options.baseUrl}/beatfilm-movies`, {
+  getMovies() {
+    return fetch(`${this._options.baseUrl}`, {
       headers: this._options.headers,
+      method: 'GET',
     })
       .then(this._check);
   }
+// .then((response) => response.json())
+//     .then((data) => {
+//       setFilms(data);
+//     });
 }
 
-const api = new Api(options);
-export default api;
+const moviesApi = new MoviesApi(options);
+export default moviesApi;
