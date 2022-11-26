@@ -7,35 +7,50 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Movies({ loggedIn, movies }) {
     const [searchingMovies, setSearchingMovies] = useState([]);
-    const [handleMovie, setHandleMovie] = useState('');
-    const [handleShortMovies, setHandleShortMovie] = useState('');
+    const [movie, setMovie] = useState('');
+    const [shortMovies, setShortMovies] = useState(false);
     const currentUser = useContext(CurrentUserContext);
+
     const filterMovies = (movies, movie) =>{
         return movies.filter((item) =>
             item.nameRU.toLowerCase() == movie.toLowerCase() ||
             item.nameEN.toLowerCase() == movie.toLowerCase()
         );
     }
-    const saveMovies = (savedMovies, shortMovie, movie) =>{
+
+    const saveStatePage = (savedMovies, shortMovie, movie) =>{
         localStorage.setItem(`${currentUser.email}-movies`, JSON.stringify(savedMovies));
         localStorage.setItem(`${currentUser.email}-shortMovie`, shortMovie);
         localStorage.setItem(`${currentUser.email}-movie`, movie);
     }
-    const onSearch = (movie, shortMovie) => {
-        if(shortMovie){
-            const shortMovies = movies.filter((item)=>item.duration < 40);
-            setSearchingMovies(filterMovies(shortMovies, movie));
-            saveMovies(filterMovies(shortMovies, movie), shortMovie, movie);
+
+    const handleMovie = (e) => {
+        const { value } = e.target;
+        setMovie(value);
+    };
+
+    const onSubmitForm = () => {
+        if(shortMovies){
+            const listOfShortMovies = movies.filter((item)=>item.duration < 40);
+            const listOfMovies = filterMovies(listOfShortMovies, movie)
+            setSearchingMovies(listOfMovies);
+            saveStatePage(listOfMovies, shortMovies, movie);
         }else{
-            setSearchingMovies(filterMovies(movies, movie));
-            saveMovies(filterMovies(movies, movie), shortMovie, movie);
+            const listOfMovies = filterMovies(movies, movie)
+            setSearchingMovies(listOfMovies);
+            saveStatePage(listOfMovies, shortMovies, movie);
         }
     }
+
+    const handleShortMovie = ()=>{
+        return shortMovies ? setShortMovies(false) : setShortMovies(true)
+    }
+
     useEffect(()=>{
         if(localStorage.getItem(`${currentUser.email}-movies`)){
             setSearchingMovies(JSON.parse(localStorage.getItem(`${currentUser.email}-movies`)));
-            setHandleShortMovie(localStorage.getItem(`${currentUser.email}-shortMovie`));
-            setHandleMovie(localStorage.getItem(`${currentUser.email}-movie`));
+            setShortMovies(localStorage.getItem(`${currentUser.email}-shortMovie`));
+            setMovie(localStorage.getItem(`${currentUser.email}-movie`));
         }
     }, [currentUser])
 
@@ -43,9 +58,11 @@ function Movies({ loggedIn, movies }) {
     <>
       <Header loggedIn={loggedIn} />
       <SearchForm
+          movie = {movie}
           handleMovie = {handleMovie}
-          handleShortMovies = {handleShortMovies}
-          onSearch = {onSearch}
+          handleShortMovie = {handleShortMovie}
+          shortMovies = {shortMovies}
+          onSubmitForm = {onSubmitForm}
       />
       <MoviesCardList movies={searchingMovies} />
       <Footer />
