@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import FilterCheckbox from "../../FilterCheckbox/FilterCheckbox";
+import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 function SearchForm({onSearch, handleMovie, handleShortMovies}) {
     const [searchData, setSearchData] = useState(
@@ -29,7 +29,7 @@ function SearchForm({onSearch, handleMovie, handleShortMovies}) {
     return (
     <form className="movies__search-form" onSubmit={handleSubmit}>
       <div className="movies__search-form-line">
-        <input type="text" name="movie" id="movie" placeholder="Фильм" value={handleMovie ? handleMovie : ''} className="movies__search-form-input" onChange={handleChange} required />
+        <input type="text" name="movie" id="movie" placeholder="Фильм" value={handleMovie ? handleMovie : searchData.movie} className="movies__search-form-input" onChange={handleChange} required />
         <button type="submit" className="movies__search-button" value="search" />
       </div>
       <FilterCheckbox/>

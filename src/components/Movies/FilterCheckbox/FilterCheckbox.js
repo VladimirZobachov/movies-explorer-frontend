@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FilterCheckbox(){
+function FilterCheckbox({handleChange}){
     return (
         <div className="movies__search-form-switch">
             <label className="movies__search-switch">
