@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import FilterCheckbox from "../../FilterCheckbox/FilterCheckbox";
 
-function SearchForm({onSearch}) {
+function SearchForm({onSearch, handleMovie, handleShortMovies}) {
     const [searchData, setSearchData] = useState(
         {
             movie: '',
@@ -28,16 +29,10 @@ function SearchForm({onSearch}) {
     return (
     <form className="movies__search-form" onSubmit={handleSubmit}>
       <div className="movies__search-form-line">
-        <input type="text" name="movie" id="movie" placeholder="Фильм" className="movies__search-form-input" onChange={handleChange} required />
+        <input type="text" name="movie" id="movie" placeholder="Фильм" value={handleMovie ? handleMovie : ''} className="movies__search-form-input" onChange={handleChange} required />
         <button type="submit" className="movies__search-button" value="search" />
       </div>
-      <div className="movies__search-form-switch">
-        <label className="movies__search-switch">
-          <input type="checkbox" name="shortMovie" id="shortMovie" onChange={handleChange}/>
-          <span className="movies__search-switch-slider movies__search-switch-slider_round" />
-        </label>
-        <span className="movies__search-switch-text">Короткометражки</span>
-      </div>
+      <FilterCheckbox/>
     </form>
     );
 }
