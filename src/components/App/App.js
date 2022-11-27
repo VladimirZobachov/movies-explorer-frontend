@@ -16,8 +16,10 @@ import Profile from '../Profile/Profile';
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const jwt = localStorage.getItem('jwt');
   const history = useHistory();
   const location = useLocation();
 
@@ -27,7 +29,6 @@ function App() {
 
   useEffect(() => {
     const path = location.pathname;
-    const jwt = localStorage.getItem('jwt');
     if (!jwt) {
       return;
     }else{
@@ -54,20 +55,34 @@ function App() {
         .catch((err)=>{
             console.log(err);
         })
-  }, []);
+  }, [loggedIn]);
+
+    useEffect(() => {
+        if(!jwt){
+            return;
+        }else{
+        MainApi
+            .getSavedMovies(jwt)
+            .then((movies)=>{
+                setSavedMovies(movies);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+    }}, [loggedIn, currentUser]);
 
   function handleCardSave(card){
-      console.log(card);
-      const jwt = localStorage.getItem('jwt');
       if(!jwt){
           return;
       }else{
           MainApi.saveMovieCard(card, jwt)
               .then((res)=>{
-                  console.log(res);
+                  setSavedMovies([res, ...savedMovies]);
+                  console.log(savedMovies);
               })
               .catch((err)=>{
                   console.log(err);
+                  console.log(savedMovies);
               })
       }
   }
@@ -112,6 +127,7 @@ function App() {
           exact
           path="/movies"
           movies={movies}
+          savedMovies={savedMovies}
           loggedIn={loggedIn}
           handleCardSave={handleCardSave}
           component={Movies}

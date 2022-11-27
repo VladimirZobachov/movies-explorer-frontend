@@ -1,18 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import options from "../../../utils/utils";
 
 function MoviesCard(props) {
-  const handleCardSave = ()=>{
+    const handleCardSave = ()=>{
       props.handleCardSave(props.card);
-  }
-  return (
+    }
+
+    return (
     <li className="movies__card">
       <div className="movies__card-header">
         <h3 className="movies__card-title">{props.card.nameRU}</h3>
-        <button type="button" className="movies__card-save" onClick={handleCardSave}/>
+        <button type="button" className={
+            `movies__card-save ${props.isSaved ? 'movies__card-save-action' : ''}`
+        } onClick={handleCardSave}/>
         <span className="movies__card-duration">{props.card.duration}</span>
       </div>
-      <img src={`https://api.nomoreparties.co${props.card.image.formats.thumbnail.url}`} alt="карточка фильма" />
+      <img src={options.baseUrl + props.card.image.formats.thumbnail.url} alt={props.isSaved} />
     </li>
-  );
+    );
 }
 export default MoviesCard;

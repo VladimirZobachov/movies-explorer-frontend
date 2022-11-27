@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList({movies, handleCardSave}) {
-  const [isCloseButtonMore, setIsCloseButtonMore] = useState(true);
-
-  return (
+function MoviesCardList({movies, handleCardSave, savedMovies}) {
+    const [isCloseButtonMore, setIsCloseButtonMore] = useState(true);
+    const checkSavedMovie = (savedMoviesList, movie)=>{
+        return savedMoviesList.find((item) => item.movieId == movie.id || movie.movieId);
+    }
+    return (
     <section className="movies">
       <ul className="movies__card-list">
         {movies.map((item) => (
           <MoviesCard
             key={item.id}
             card={item}
+            isSaved={checkSavedMovie(savedMovies, item)}
+            savedMovies={savedMovies}
             handleCardSave={handleCardSave}
           />
         ))}
@@ -22,7 +26,7 @@ function MoviesCardList({movies, handleCardSave}) {
         Ещё
       </button>
     </section>
-  );
+    );
 }
 
 export default MoviesCardList;

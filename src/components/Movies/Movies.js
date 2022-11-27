@@ -5,7 +5,7 @@ import SearchForm from './SearchForm/SearchForm';
 import Footer from '../Footer/Footer';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Movies({ loggedIn, movies, handleCardSave }) {
+function Movies({ loggedIn, movies, savedMovies, handleCardSave }) {
     const [searchingMovies, setSearchingMovies] = useState([]);
     const [movie, setMovie] = useState('');
     const [shortMovies, setShortMovies] = useState(false);
@@ -72,6 +72,7 @@ function Movies({ loggedIn, movies, handleCardSave }) {
       />
       <MoviesCardList
           movies={searchingMovies}
+          savedMovies={savedMovies}
           handleCardSave={handleCardSave}
       />
       <Footer />

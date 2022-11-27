@@ -13,16 +13,12 @@ class MoviesApi {
   };
 
   getMovies() {
-    return fetch(`${this._options.baseUrl}`, {
+    return fetch(`${this._options.baseUrl}/beatfilm-movies`, {
       headers: this._options.headers,
       method: 'GET',
     })
       .then(this._check);
   }
-// .then((response) => response.json())
-//     .then((data) => {
-//       setFilms(data);
-//     });
 }
 
 const moviesApi = new MoviesApi(options);
