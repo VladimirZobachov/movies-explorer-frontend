@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList({movies, handleCardSave, savedMovies}) {
+function MoviesCardList({movies, handleCardSave, handleCardDel, savedMovies}) {
     const [isCloseButtonMore, setIsCloseButtonMore] = useState(true);
     const checkSavedMovie = (savedMoviesList, movie)=>{
         return savedMoviesList.find((item) => item.movieId == movie.id || movie.movieId);
@@ -16,6 +16,7 @@ function MoviesCardList({movies, handleCardSave, savedMovies}) {
             isSaved={checkSavedMovie(savedMovies, item)}
             savedMovies={savedMovies}
             handleCardSave={handleCardSave}
+            handleCardDel={handleCardDel}
           />
         ))}
       </ul>

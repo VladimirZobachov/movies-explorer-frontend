@@ -69,6 +69,17 @@ export const saveMovieCard = (card, jwt) => {
       .then((res) => check(res));
 }
 
+export const deleteMovieCard = (id, jwt)=> {
+  const token = jwt.replace(/\"/g, '');
+  return fetch(`${BASE_URL}/movies/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+      .then((res) => check(res));
+}
+
 export const getSavedMovies = (jwt)=>{
   const token = jwt.replace(/\"/g, '');
   return fetch(`${BASE_URL}/movies`, {

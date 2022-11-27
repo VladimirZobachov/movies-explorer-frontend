@@ -78,14 +78,33 @@ function App() {
           MainApi.saveMovieCard(card, jwt)
               .then((res)=>{
                   setSavedMovies([res, ...savedMovies]);
-                  console.log(savedMovies);
               })
               .catch((err)=>{
                   console.log(err);
-                  console.log(savedMovies);
               })
       }
   }
+
+    function handleCardDel(card){
+        if(!jwt){
+            return;
+        }else{
+            const deletingMovie = savedMovies.filter((item) => item.movieId == card.id || card.movieId);
+            MainApi.deleteMovieCard(deletingMovie[0]._id, jwt)
+                .then(()=>{
+                    MainApi.getSavedMovies(jwt)
+                        .then((res)=>{
+                            setSavedMovies(res);
+                        })
+                        .catch((err)=>{
+                            console.log(err);
+                        })
+                })
+                .catch((err)=>{
+                    console.log(err);
+                })
+        }
+    }
 
   const onLogin = (email, password) => MainApi
     .authorize(email, password)
@@ -130,6 +149,7 @@ function App() {
           savedMovies={savedMovies}
           loggedIn={loggedIn}
           handleCardSave={handleCardSave}
+          handleCardDel={handleCardDel}
           component={Movies}
         />
         <ProtectedRoute

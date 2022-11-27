@@ -5,7 +5,7 @@ import SearchForm from './SearchForm/SearchForm';
 import Footer from '../Footer/Footer';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Movies({ loggedIn, movies, savedMovies, handleCardSave }) {
+function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel }) {
     const [searchingMovies, setSearchingMovies] = useState([]);
     const [movie, setMovie] = useState('');
     const [shortMovies, setShortMovies] = useState(false);
@@ -13,8 +13,8 @@ function Movies({ loggedIn, movies, savedMovies, handleCardSave }) {
 
     const filterMovies = (movies, movie) =>{
         return movies.filter((item) =>
-            item.nameRU.toLowerCase() == movie.toLowerCase() ||
-            item.nameEN.toLowerCase() == movie.toLowerCase()
+            item.nameRU.toLowerCase().trim() == movie.toLowerCase().trim() ||
+            item.nameEN.toLowerCase().trim() == movie.toLowerCase().trim()
         );
     }
 
@@ -74,6 +74,7 @@ function Movies({ loggedIn, movies, savedMovies, handleCardSave }) {
           movies={searchingMovies}
           savedMovies={savedMovies}
           handleCardSave={handleCardSave}
+          handleCardDel={handleCardDel}
       />
       <Footer />
     </>
