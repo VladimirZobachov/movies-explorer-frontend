@@ -56,6 +56,10 @@ function App() {
         })
   }, []);
 
+  function handleCardSave(card){
+      console.log(card);
+  }
+
   const onLogin = (email, password) => MainApi
     .authorize(email, password)
     .then((jwt) => {
@@ -97,6 +101,7 @@ function App() {
           path="/movies"
           movies={movies}
           loggedIn={loggedIn}
+          handleCardSave={handleCardSave}
           component={Movies}
         />
         <ProtectedRoute

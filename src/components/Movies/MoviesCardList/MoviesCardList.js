@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList({movies}) {
-  const [isClose, setIsClose] = useState(false);
+function MoviesCardList({movies, handleCardSave}) {
+  const [isClose, setIsClose] = useState(true);
 
   return (
     <section className="movies">
@@ -11,6 +11,7 @@ function MoviesCardList({movies}) {
           <MoviesCard
             key={item.id}
             card={item}
+            handleCardSave={handleCardSave}
           />
         ))}
       </ul>

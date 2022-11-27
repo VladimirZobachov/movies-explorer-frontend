@@ -5,7 +5,7 @@ import SearchForm from './SearchForm/SearchForm';
 import Footer from '../Footer/Footer';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Movies({ loggedIn, movies }) {
+function Movies({ loggedIn, movies, handleCardSave }) {
     const [searchingMovies, setSearchingMovies] = useState([]);
     const [movie, setMovie] = useState('');
     const [shortMovies, setShortMovies] = useState(false);
@@ -43,7 +43,13 @@ function Movies({ loggedIn, movies }) {
     }
 
     const handleShortMovie = ()=>{
-        return shortMovies ? setShortMovies(false) : setShortMovies(true)
+        if (shortMovies){
+            setShortMovies(false);
+            localStorage.setItem(`${currentUser.email}-shortMovie`, shortMovies);
+        }else{
+            setShortMovies(true);
+            localStorage.setItem(`${currentUser.email}-shortMovie`, shortMovies);
+        }
     }
 
     useEffect(()=>{
@@ -64,7 +70,10 @@ function Movies({ loggedIn, movies }) {
           shortMovies = {shortMovies}
           onSubmitForm = {onSubmitForm}
       />
-      <MoviesCardList movies={searchingMovies} />
+      <MoviesCardList
+          movies={searchingMovies}
+          handleCardSave={handleCardSave}
+      />
       <Footer />
     </>
     );
