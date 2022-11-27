@@ -1,4 +1,5 @@
-export const BASE_URL = 'http://localhost:3001';
+import {BASE_URL} from "./constants";
+import options from "./utils";
 
 function check(res) {
   if (res.ok) {
@@ -42,3 +43,28 @@ export const getUser = (jwt) => {
   })
     .then((res) => check(res));
 };
+
+export const saveMovieCard = (card, jwt) => {
+  const token = jwt.replace(/\"/g, '');
+  return fetch(`${BASE_URL}/movies`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      "country": card.country,
+      "director": card.director,
+      "duration": card.duration,
+      "year": card.year,
+      "description": card.description,
+      "image": options.baseUrl + card.image.url,
+      "trailerLink": card.trailerLink,
+      "thumbnail": options.baseUrl + card.image.formats.thumbnail.url,
+      "movieId": card.id,
+      "nameRU": card.nameRU,
+      "nameEN": card.nameEN
+    })
+  })
+      .then((res) => check(res));
+}

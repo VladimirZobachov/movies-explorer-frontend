@@ -58,6 +58,18 @@ function App() {
 
   function handleCardSave(card){
       console.log(card);
+      const jwt = localStorage.getItem('jwt');
+      if(!jwt){
+          return;
+      }else{
+          MainApi.saveMovieCard(card, jwt)
+              .then((res)=>{
+                  console.log(res);
+              })
+              .catch((err)=>{
+                  console.log(err);
+              })
+      }
   }
 
   const onLogin = (email, password) => MainApi
