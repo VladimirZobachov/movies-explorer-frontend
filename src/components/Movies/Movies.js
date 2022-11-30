@@ -7,11 +7,11 @@ import {filterMovies, saveStatePage} from '../../utils/utils';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel }) {
+    const page = 'moviesPage';
+    const currentUser = useContext(CurrentUserContext);
     const [searchingMovies, setSearchingMovies] = useState([]);
     const [movie, setMovie] = useState('');
-    const [shortMovies, setShortMovies] = useState(false);
-    const currentUser = useContext(CurrentUserContext);
-    const page = 'moviesPage';
+    const [shortMovies, setShortMovies] = useState(localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true' ? true : false);
 
     const handleMovie = (e) => {
         const { value } = e.target;
@@ -39,13 +39,12 @@ function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel }
         if(localStorage.getItem(`${currentUser.email}-${page}-movies`)){
             setSearchingMovies(JSON.parse(localStorage.getItem(`${currentUser.email}-${page}-movies`)));
             setMovie(localStorage.getItem(`${currentUser.email}-${page}-movie`));
-            localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true' ? setShortMovies(true) : setShortMovies(false);
+            (localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true') ? setShortMovies(true) : setShortMovies(false);
         }
     }, [currentUser])
 
     useEffect(()=>{
         handleSaveShortMovie(shortMovies);
-        console.log(shortMovies);
     }, [shortMovies])
 
     return (

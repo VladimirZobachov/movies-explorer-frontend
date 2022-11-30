@@ -7,19 +7,32 @@ import {filterMovies} from "../../utils/utils";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 
 function SavedMovies({ loggedIn, movies, handleCardDel }) {
-    const [shortMovies, setShortMovies] = useState(false);
+    const page = 'savedPage';
+    const currentUser = useContext(CurrentUserContext);
+    const [shortMovies, setShortMovies] = useState(localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true' ? true : false);
     const [movie, setMovie] = useState('');
     const [listMovies, setListMovies] = useState(movies);
     const [searchingMovies, setSearchingMovies] = useState(listMovies);
-    const currentUser = useContext(CurrentUserContext);
 
     const handleMovie = (e) => {
         const { value } = e.target;
         setMovie(value);
     };
 
-    const handleShortMovies = (value)=>{
+    const handleDelMovie = (movie) =>{
+        handleCardDel(movie);
+        const newListMovies = listMovies.filter(item => item.movieId !== movie.movieId);
+        setListMovies(newListMovies);
+    }
+
+    const handleSaveShortMovie = (value)=>{
         setShortMovies(value);
+        localStorage.setItem(`${currentUser.email}-${page}-shortMovie`, shortMovies);
+    }
+
+    const handleShortMovie = ()=>{
+        setShortMovies(!shortMovies);
+        localStorage.setItem(`${currentUser.email}-${page}-shortMovie`, shortMovies);
     }
 
     const onSubmitForm = (e)=>{
@@ -28,28 +41,40 @@ function SavedMovies({ loggedIn, movies, handleCardDel }) {
     };
 
     useEffect(()=>{
-        console.log('Effect---1');
+        console.log('setListMovies(searchingMovies)');
+        setListMovies(searchingMovies);
+    }, [searchingMovies]);
+
+    useEffect(()=>{
+        if(localStorage.getItem(`${currentUser.email}-${page}-movie`)){
+            setMovie(localStorage.getItem(`${currentUser.email}-${page}-movie`));
+            (localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true') ? setShortMovies(true) : setShortMovies(false);
+        }
+    }, [currentUser])
+
+    useEffect(()=>{
+        console.log('setListMovies(movies)');
         setListMovies(movies);
     }, [currentUser]);
 
     useEffect(()=>{
-        console.log('Effect---2');
-        setListMovies(searchingMovies);
-    }, [searchingMovies]);
-
+        console.log('handleSaveShortMovie(shortMovies)');
+        handleSaveShortMovie(shortMovies);
+    }, [shortMovies])
 
     return (
     <>
       <Header loggedIn={loggedIn} />
       <SearchForm
-          onSubmitForm={onSubmitForm}
-          handleMovie={handleMovie}
-          handleShortVovies ={handleShortMovies}
-          movie={movie}
+          movie = {movie}
+          handleMovie = {handleMovie}
+          handleShortMovie = {handleShortMovie}
+          shortMovies = {shortMovies}
+          onSubmitForm = {onSubmitForm}
       />
       <MoviesCardList
           movies={listMovies}
-          handleCardDel={handleCardDel}
+          handleDelMovie={handleDelMovie}
       />
       <Footer />
     </>

@@ -19,11 +19,9 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const jwt = localStorage.getItem('jwt');
   const history = useHistory();
   const location = useLocation();
-
-
+  const jwt = localStorage.getItem('jwt');
 
   useEffect(() => {
     const path = location.pathname;
@@ -88,7 +86,7 @@ function App() {
     if(!jwt){
         return false;
     }else{
-        const deletingMovie = savedMovies.filter((item) => item.movieId === card.id || card.movieId);
+        const deletingMovie = savedMovies.filter((item) => item.movieId == card.id || card.movieId);
         MainApi.deleteMovieCard(deletingMovie[0]._id, jwt)
             .then(()=>{
                 MainApi.getSavedMovies(jwt)

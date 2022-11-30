@@ -44,7 +44,7 @@ export const getUser = (jwt) => {
     .then((res) => check(res));
 };
 
-export const updateUser = (jwt, name, email) =>{
+export const updateUser = (name, email, jwt) =>{
   const token = jwt.replace(/\"/g, '');
   return fetch(`${BASE_URL}/users/me`, {
     method: 'PATCH',

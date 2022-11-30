@@ -1,7 +1,7 @@
 import React from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList({movies, handleCardDel}) {
+function MoviesCardList({movies, handleDelMovie}) {
 
   return (
     <section className="movies">
@@ -11,7 +11,7 @@ function MoviesCardList({movies, handleCardDel}) {
               <MoviesCard
                   key={item._id}
                   card={item}
-                  handleCardDel={handleCardDel}
+                  handleDelMovie={handleDelMovie}
               />)
           })}
       </ul>

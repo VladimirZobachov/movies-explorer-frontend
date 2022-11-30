@@ -2,7 +2,7 @@ import React from 'react';
 
 function MoviesCard(props) {
     const handleCardDel = ()=>{
-        props.handleCardDel(props.card);
+        props.handleDelMovie(props.card);
     }
     return (
         <li className="movies__card">
