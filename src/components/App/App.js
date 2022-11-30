@@ -24,13 +24,13 @@ function App() {
   const location = useLocation();
 
   const goBack = () => {
-    history.goBack();
+    history.go(-2);
   }
 
   useEffect(() => {
     const path = location.pathname;
     if (!jwt) {
-      return;
+      return false;
     }else{
       MainApi.getUser(jwt)
           .then((user) => {
@@ -59,21 +59,22 @@ function App() {
 
     useEffect(() => {
         if(!jwt){
-            return;
+            return false;
         }else{
         MainApi
             .getSavedMovies(jwt)
             .then((movies)=>{
-                setSavedMovies(movies);
+                const userMovies = movies.filter((item)=>item.owner === currentUser._id);
+                setSavedMovies(userMovies);
             })
             .catch((err)=>{
                 console.log(err);
             })
     }}, [loggedIn, currentUser]);
 
-  function handleCardSave(card){
+    function handleCardSave(card){
       if(!jwt){
-          return;
+          return false;
       }else{
           MainApi.saveMovieCard(card, jwt)
               .then((res)=>{
@@ -83,27 +84,31 @@ function App() {
                   console.log(err);
               })
       }
-  }
+    }
+
+    function handleSearch(movies){
+      setListOfMovies(movies);
+    }
 
     function handleCardDel(card){
-        if(!jwt){
-            return;
-        }else{
-            const deletingMovie = savedMovies.filter((item) => item.movieId == card.id || card.movieId);
-            MainApi.deleteMovieCard(deletingMovie[0]._id, jwt)
-                .then(()=>{
-                    MainApi.getSavedMovies(jwt)
-                        .then((res)=>{
-                            setSavedMovies(res);
-                        })
-                        .catch((err)=>{
-                            console.log(err);
-                        })
-                })
-                .catch((err)=>{
-                    console.log(err);
-                })
-        }
+    if(!jwt){
+        return false;
+    }else{
+        const deletingMovie = savedMovies.filter((item) => item.movieId === card.id || card.movieId);
+        MainApi.deleteMovieCard(deletingMovie[0]._id, jwt)
+            .then(()=>{
+                MainApi.getSavedMovies(jwt)
+                    .then((res)=>{
+                        setSavedMovies(res);
+                    })
+                    .catch((err)=>{
+                        console.log(err);
+                    })
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+    }
     }
 
   const onLogin = (email, password) => MainApi
@@ -155,8 +160,10 @@ function App() {
         <ProtectedRoute
           exact
           path="/saved-movies"
-          movies={movies}
+          movies={savedMovies}
+          handleSearch={handleSearch}
           loggedIn={loggedIn}
+          handleCardDel={handleCardDel}
           component={SavedMovies}
         />
         <ProtectedRoute

@@ -1,4 +1,4 @@
-import options from './utils';
+import {options} from './constants';
 
 class MoviesApi {
   constructor(options) {
