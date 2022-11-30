@@ -23,9 +23,7 @@ function App() {
   const history = useHistory();
   const location = useLocation();
 
-  const goBack = () => {
-    history.go(-2);
-  }
+
 
   useEffect(() => {
     const path = location.pathname;
@@ -72,7 +70,7 @@ function App() {
             })
     }}, [loggedIn, currentUser]);
 
-    function handleCardSave(card){
+    const handleCardSave = (card)=>{
       if(!jwt){
           return false;
       }else{
@@ -86,11 +84,7 @@ function App() {
       }
     }
 
-    function handleSearch(movies){
-      setListOfMovies(movies);
-    }
-
-    function handleCardDel(card){
+    const handleCardDel = (card)=>{
     if(!jwt){
         return false;
     }else{
@@ -111,6 +105,10 @@ function App() {
     }
     }
 
+    const goBack = () => {
+        history.go(-2);
+    }
+
   const onLogin = (email, password) => MainApi
     .authorize(email, password)
     .then((jwt) => {
@@ -128,6 +126,15 @@ function App() {
     setCurrentUser({});
     history.push('/');
   }
+
+  const onProfile = (name, email)=>MainApi
+      .updateUser(jwt, name, email)
+      .then((user)=>{
+          setCurrentUser(user)
+      })
+      .catch((e)=>{
+          console.log(e);
+      })
 
   const onRegister = (email, password, name) => MainApi
       .register(email, password, name)
@@ -161,7 +168,6 @@ function App() {
           exact
           path="/saved-movies"
           movies={savedMovies}
-          handleSearch={handleSearch}
           loggedIn={loggedIn}
           handleCardDel={handleCardDel}
           component={SavedMovies}
@@ -171,6 +177,7 @@ function App() {
           path="/profile"
           loggedIn={loggedIn}
           onLogout={onLogout}
+          onProfile={onProfile}
           component={Profile}
         />
         <Route exact path="/signin">

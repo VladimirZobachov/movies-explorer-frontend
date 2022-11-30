@@ -34,7 +34,7 @@ export const authorize = (email, password) => fetch(`${BASE_URL}/signin`, {
   .then((res) => check(res));
 
 export const getUser = (jwt) => {
-  const token = jwt.replace(/"/g, '');
+  const token = jwt.replace(/\"/g, '');
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
@@ -44,8 +44,24 @@ export const getUser = (jwt) => {
     .then((res) => check(res));
 };
 
+export const updateUser = (jwt, name, email) =>{
+  const token = jwt.replace(/\"/g, '');
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      Authorization: `Bearer ${token}`,
+    },
+    body:JSON.stringify({
+      name,
+      email
+    })
+  })
+      .then((res) => check(res));
+}
+
 export const saveMovieCard = (card, jwt) => {
-  const token = jwt.replace(/"/g, '');
+  const token = jwt.replace(/\"/g, '');
   return fetch(`${BASE_URL}/movies`, {
     method: 'POST',
     headers: {
@@ -70,7 +86,7 @@ export const saveMovieCard = (card, jwt) => {
 }
 
 export const deleteMovieCard = (id, jwt)=> {
-  const token = jwt.replace(/"/g, '');
+  const token = jwt.replace(/\"/g, '');
   return fetch(`${BASE_URL}/movies/${id}`, {
     method: 'DELETE',
     headers: {
@@ -81,7 +97,7 @@ export const deleteMovieCard = (id, jwt)=> {
 }
 
 export const getSavedMovies = (jwt)=>{
-  const token = jwt.replace(/"/g, '');
+  const token = jwt.replace(/\"/g, '');
   return fetch(`${BASE_URL}/movies`, {
     method: 'GET',
     headers: {

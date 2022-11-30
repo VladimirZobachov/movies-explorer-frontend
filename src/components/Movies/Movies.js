@@ -16,31 +16,37 @@ function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel }
     const handleMovie = (e) => {
         const { value } = e.target;
         setMovie(value);
-    };
+    }
 
-    const onSubmitForm = () => {
-            const listOfMovies = filterMovies(movies, movie, shortMovies)
-            setSearchingMovies(listOfMovies);
-            saveStatePage(page, listOfMovies, shortMovies, movie, currentUser);
+    const handleSaveShortMovie = (value)=>{
+        setShortMovies(value);
+        localStorage.setItem(`${currentUser.email}-${page}-shortMovie`, shortMovies);
+    }
+
+    const onSubmitForm = (e) => {
+        e.preventDefault();
+        const listOfMovies = filterMovies(movies, movie, shortMovies)
+        setSearchingMovies(listOfMovies);
+        saveStatePage(page, listOfMovies, shortMovies, movie, currentUser);
     }
 
     const handleShortMovie = ()=>{
-        if (shortMovies){
-            setShortMovies(false);
-            localStorage.setItem(`${currentUser.email}-${page}-shortMovie`, shortMovies);
-        }else{
-            setShortMovies(true);
-            localStorage.setItem(`${currentUser.email}-${page}-shortMovie`, shortMovies);
-        }
+        setShortMovies(!shortMovies);
+        localStorage.setItem(`${currentUser.email}-${page}-shortMovie`, shortMovies);
     }
 
     useEffect(()=>{
         if(localStorage.getItem(`${currentUser.email}-${page}-movies`)){
             setSearchingMovies(JSON.parse(localStorage.getItem(`${currentUser.email}-${page}-movies`)));
-            setShortMovies(localStorage.getItem(`${currentUser.email}-${page}-shortMovie`));
             setMovie(localStorage.getItem(`${currentUser.email}-${page}-movie`));
+            localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true' ? setShortMovies(true) : setShortMovies(false);
         }
     }, [currentUser])
+
+    useEffect(()=>{
+        handleSaveShortMovie(shortMovies);
+        console.log(shortMovies);
+    }, [shortMovies])
 
     return (
     <>
