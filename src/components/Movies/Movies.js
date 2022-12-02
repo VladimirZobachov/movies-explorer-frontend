@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer';
 import {filterMovies, saveStatePage} from '../../utils/utils';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel }) {
+function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel, setIsInfoTooltip, isLoad, setIsLoad}) {
     const page = 'moviesPage';
     const currentUser = useContext(CurrentUserContext);
     const [searchingMovies, setSearchingMovies] = useState([]);
@@ -23,11 +23,30 @@ function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel }
         localStorage.setItem(`${currentUser.email}-${page}-shortMovie`, shortMovies);
     }
 
-    const onSubmitForm = (e) => {
-        e.preventDefault();
-        const listOfMovies = filterMovies(movies, movie, shortMovies)
-        setSearchingMovies(listOfMovies);
-        saveStatePage(page, listOfMovies, shortMovies, movie, currentUser);
+    const onSubmitForm = async (e) => {
+        try{
+            setIsLoad(true);
+            e.preventDefault();
+            const listOfMovies = await filterMovies(movies, movie, shortMovies);
+            if (listOfMovies.length === 0){
+                isLoad(false);
+                setIsInfoTooltip({
+                    isOpen: true,
+                    statusOk: false,
+                    textStatus: 'По вашему запросу к сожалению фильмов не найдено(',
+                })
+            }
+            await setSearchingMovies(listOfMovies);
+            saveStatePage(page, listOfMovies, shortMovies, movie, currentUser);
+        }catch (err){
+            setIsInfoTooltip({
+                isOpen: true,
+                statusOk: false,
+                textStatus: 'Что-то пошло не так, попробуйте позже',
+            })
+        }finally {
+            setIsLoad(false);
+        }
     }
 
     const handleShortMovie = ()=>{
