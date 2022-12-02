@@ -41,7 +41,6 @@ function SavedMovies({ loggedIn, movies, handleCardDel }) {
     };
 
     useEffect(()=>{
-        console.log('setListMovies(searchingMovies)');
         setListMovies(searchingMovies);
     }, [searchingMovies]);
 
@@ -53,12 +52,10 @@ function SavedMovies({ loggedIn, movies, handleCardDel }) {
     }, [currentUser])
 
     useEffect(()=>{
-        console.log('setListMovies(movies)');
         setListMovies(movies);
     }, [currentUser]);
 
     useEffect(()=>{
-        console.log('handleSaveShortMovie(shortMovies)');
         handleSaveShortMovie(shortMovies);
     }, [shortMovies])
 

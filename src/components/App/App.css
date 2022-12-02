@@ -4,9 +4,6 @@
     margin: auto;
     font-family: 'Inter', 'Arial', sans-serif;
 }
-button:hover{
-    opacity: 80%;
-}
 a:hover{
     opacity: 50%;
 }

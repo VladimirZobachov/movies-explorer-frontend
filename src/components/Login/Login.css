@@ -81,7 +81,13 @@
     background-color: #000000;
     color: #ffffff;
     align-items: center;
+}
+.form__footer-button-register_active{
     cursor: pointer;
+    opacity: 100%;
+}
+.form__footer-button-register_disabled{
+    opacity: 50%;
 }
 .form__footer-question{
     font-weight: 400;
@@ -95,4 +101,10 @@
     font-size: 14px;
     line-height: 17px;
     color: #000000;
+}
+.form__errors{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 11px;
+    color: red;
 }

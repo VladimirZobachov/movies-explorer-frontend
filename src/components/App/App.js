@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     const path = location.pathname;
     if (!jwt) {
-      return false;
+      return;
     }else{
       MainApi.getUser(jwt)
           .then((user) => {
@@ -55,7 +55,7 @@ function App() {
 
     useEffect(() => {
         if(!jwt){
-            return false;
+            return;
         }else{
         MainApi
             .getSavedMovies(jwt)
