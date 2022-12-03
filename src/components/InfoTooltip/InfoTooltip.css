@@ -1,4 +1,4 @@
-.popup{
+.popup__tooltip{
     display: grid;
     position: fixed;
     top: 0;
@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
 }
-.popup_opened{
+.popup__tooltip_opened{
     display: grid;
     opacity: 1;
     visibility: visible;
@@ -27,7 +27,7 @@
     padding-bottom: 60px;
     margin: 0;
 }
-.popup__close-button{
+.popup__infotooltip-close-button{
     position: absolute;
     top: -40px;
     right: -40px;

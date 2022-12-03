@@ -6,10 +6,10 @@ function InfoTooltip({onClose, status: {isOpen, statusOk, textStatus}}) {
     const handleClose = onClose;
 
     return (
-        <div className={`popup ${isOpen && 'popup_opened'}`}>
+        <div className={`popup__tooltip ${isOpen && 'popup__tooltip_opened'}`}>
             <div className="popup__content-info">
                 <button aria-label="Close" type="button"
-                        className="popup__close-button" onClick={handleClose}/>
+                        className="popup__infotooltip-close-button" onClick={handleClose}/>
                 <img src={statusOk ? status_ok : status_err} alt="статус"/>
                 <h2 className="popup__infotooltip-title">{textStatus}</h2>
             </div>
