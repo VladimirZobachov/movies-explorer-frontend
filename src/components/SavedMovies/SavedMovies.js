@@ -6,7 +6,7 @@ import SearchForm from "./SearchForm/SearchForm";
 import {filterMovies} from "../../utils/utils";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 
-function SavedMovies({ loggedIn, movies, handleCardDel, setIsInfoTooltip }) {
+function SavedMovies({ loggedIn, movies, handleCardDel, setIsInfoTooltip, handleOpenPopup }) {
     const page = 'savedPage';
     const currentUser = useContext(CurrentUserContext);
     const [shortMovies, setShortMovies] = useState(localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true' ? true : false);
@@ -53,7 +53,10 @@ function SavedMovies({ loggedIn, movies, handleCardDel, setIsInfoTooltip }) {
 
     return (
     <>
-      <Header loggedIn={loggedIn} />
+      <Header
+          loggedIn={loggedIn}
+          handleOpenPopup={handleOpenPopup}
+      />
       <SearchForm
           movie = {movie}
           handleMovie = {handleMovie}

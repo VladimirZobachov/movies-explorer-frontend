@@ -3,7 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import IconMenu from '../../images/icon-menu.svg';
 import logo from '../../images/logo.svg';
 
-function Navigation() {
+function Navigation({handleOpenPopup}) {
+
   return (
     <Switch>
       <Route exact path="/">
@@ -22,7 +23,7 @@ function Navigation() {
               <a href="/profile" className="header__navigation-button-profile">Аккаунт</a>
             </li>
             <li className="header__navigation-item header__navigation-button-menu">
-              <button className="header__navigation-button-menu" type="button">
+              <button className="header__navigation-button-menu" type="button" onClick={handleOpenPopup}>
                 <img src={IconMenu} className="header__navigation-item-menu" alt="меню" />
               </button>
             </li>
@@ -45,7 +46,7 @@ function Navigation() {
               <a href="/profile" className="header__navigation-button-profile">Аккаунт</a>
             </li>
             <li className="header__navigation-item header__navigation-button-menu">
-              <button className="header__navigation-button-menu" type="button">
+              <button className="header__navigation-button-menu" type="button" onClick={handleOpenPopup}>
                 <img src={IconMenu} className="header__navigation-item-menu" alt="меню" />
               </button>
             </li>
@@ -68,7 +69,7 @@ function Navigation() {
               <a href="/profile" className="header__navigation-button-profile">Аккаунт</a>
             </li>
             <li className="header__navigation-item header__navigation-button-menu">
-              <button className="header__navigation-button-menu" type="button">
+              <button className="header__navigation-button-menu" type="button" onClick={handleOpenPopup}>
                 <img src={IconMenu} className="header__navigation-item-menu" alt="меню" />
               </button>
             </li>
@@ -91,7 +92,7 @@ function Navigation() {
               <a href="/profile" className="header__navigation-button-profile">Аккаунт</a>
             </li>
             <li className="header__navigation-item header__navigation-button-menu">
-              <button className="header__navigation-button-menu" type="button">
+              <button className="header__navigation-button-menu" type="button" onClick={handleOpenPopup}>
                 <img src={IconMenu} className="header__navigation-item-menu" alt="меню" />
               </button>
             </li>

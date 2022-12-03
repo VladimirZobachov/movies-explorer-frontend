@@ -3,7 +3,7 @@ import Header from '../Header/Header';
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import isEmail from "validator/es/lib/isEmail";
 
-function Profile({ loggedIn, onLogout, onProfile }) {
+function Profile({ loggedIn, onLogout, onProfile, handleOpenPopup }) {
   const currentUser = useContext(CurrentUserContext);
   const [userName, setUserName] = useState(currentUser.name);
   const [userEmail, setUserEmail] = useState(currentUser.email);
@@ -50,7 +50,7 @@ function Profile({ loggedIn, onLogout, onProfile }) {
 
   return (
     <>
-      <Header loggedIn={loggedIn} />
+      <Header loggedIn={loggedIn} handleOpenPopup={handleOpenPopup} />
       <form className="main" onSubmit={handleSubmit}>
         <section className="profile">
           <h1 className="profile__title">Привет, {currentUser.name}!</h1>

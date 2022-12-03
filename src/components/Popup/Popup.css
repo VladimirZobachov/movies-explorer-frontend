@@ -57,3 +57,7 @@
 .popup_type_menu-item .header__navigation-button-profile{
     display: grid;
 }
+.popup__opened{
+    visibility: visible;
+    opacity: 1;
+}

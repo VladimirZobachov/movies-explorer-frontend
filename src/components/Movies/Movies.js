@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer';
 import {filterMovies, saveStatePage} from '../../utils/utils';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel, setIsInfoTooltip, setIsLoad}) {
+function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel, setIsInfoTooltip, setIsLoad, handleOpenPopup}) {
     const page = 'moviesPage';
     const currentUser = useContext(CurrentUserContext);
     const [searchingMovies, setSearchingMovies] = useState([]);
@@ -68,7 +68,10 @@ function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel, 
 
     return (
     <>
-      <Header loggedIn={loggedIn} />
+      <Header
+          loggedIn={loggedIn}
+          handleOpenPopup={handleOpenPopup}
+      />
       <SearchForm
           movie = {movie}
           handleMovie = {handleMovie}

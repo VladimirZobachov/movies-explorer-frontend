@@ -15,12 +15,14 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Preloader from "../Preloader/Preloader";
 import InfoTooltip from "../InfoTooltip/InfoTooltip";
+import Popup from "../Popup/Popup";
 
 function App() {
     const [movies, setMovies] = useState([]);
     const [savedMovies, setSavedMovies] = useState([]);
     const [loggedIn, setLoggedIn] = useState(false);
     const [currentUser, setCurrentUser] = useState({});
+    const [isOpenPopup, setIsOpenPopup] = useState(false);
     const [isInfoTooltip, setIsInfoTooltip] = useState({
         isOpen: false,
         statusOk: true,
@@ -30,6 +32,12 @@ function App() {
     const history = useHistory();
     const location = useLocation();
     const jwt = localStorage.getItem('jwt');
+    const handleOpenPopup = ()=>{
+        setIsOpenPopup(true);
+    }
+    const handleClosePopup = ()=>{
+        setIsOpenPopup(false);
+    }
 
     useEffect(() => {
         const path = location.pathname;
@@ -206,7 +214,10 @@ function App() {
                     <CurrentUserContext.Provider value={currentUser}>
                         <Switch>
                             <Route exact path="/">
-                                <Header loggedIn={loggedIn}/>
+                                <Header
+                                    loggedIn={loggedIn}
+                                    handleOpenPopup={handleOpenPopup}
+                                />
                                 <Main/>
                                 <Footer/>
                             </Route>
@@ -220,6 +231,7 @@ function App() {
                                 handleCardDel={handleCardDel}
                                 setIsInfoTooltip={setIsInfoTooltip}
                                 setIsLoad={setIsLoad}
+                                handleOpenPopup={handleOpenPopup}
                                 component={Movies}
                             />
                             <ProtectedRoute
@@ -230,6 +242,7 @@ function App() {
                                 handleCardDel={handleCardDel}
                                 setIsInfoTooltip={setIsInfoTooltip}
                                 setIsLoad={setIsLoad}
+                                handleOpenPopup={handleOpenPopup}
                                 component={SavedMovies}
                             />
                             <ProtectedRoute
@@ -238,6 +251,7 @@ function App() {
                                 loggedIn={loggedIn}
                                 onLogout={onLogout}
                                 onProfile={onProfile}
+                                handleOpenPopup={handleOpenPopup}
                                 component={Profile}
                             />
                             <Route exact path="/signin">
@@ -253,6 +267,10 @@ function App() {
                     <InfoTooltip
                         status={isInfoTooltip}
                         onClose={onCloseInfoTooltip}
+                    />
+                    <Popup
+                        isOpenPopup={isOpenPopup}
+                        handleClosePopup={handleClosePopup}
                     />
                     </CurrentUserContext.Provider>
                 )
