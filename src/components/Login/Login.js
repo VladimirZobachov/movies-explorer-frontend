@@ -86,7 +86,7 @@ function Login({ onLogin }) {
                     id="password"
                     onChange={handleChange}
                     autoComplete="password"
-                    minLength="6"
+                    minLength="3"
                     value={values.password || ''}
                     required
                 />

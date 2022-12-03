@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:3001';
+export const BASE_URL = 'http://127.0.0.1:3001';
 export const options = {
     baseUrl: 'https://api.nomoreparties.co',
 };

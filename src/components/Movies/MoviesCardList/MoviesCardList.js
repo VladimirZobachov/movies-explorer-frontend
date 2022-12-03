@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
 function MoviesCardList({movies, handleCardSave, handleCardDel, savedMovies}) {
     const [isCloseButtonMore, setIsCloseButtonMore] = useState(true);
+    const [listOfMovies, setListOfMovies] = useState([]);
     const checkSavedMovie = (savedMoviesList, movie)=>{
         return savedMoviesList.find((item) => item.movieId == movie.id || movie.movieId);
     }
+    const handleClickMoreMovies = () =>{
+        setListOfMovies(movies.slice(0, listOfMovies.length + 3));
+    }
+    useEffect(()=>{
+        if(movies.length > listOfMovies.length){
+            setIsCloseButtonMore(false);
+        }else{
+            setIsCloseButtonMore(true);
+        }
+    },[listOfMovies])
+
+    useEffect(()=>{
+        setListOfMovies(movies.slice(0,6));
+    }, [movies])
+
     return (
     <section className="movies">
       <ul className="movies__card-list">
-        {movies.map((item) => (
+        {listOfMovies.map((item) => (
           <MoviesCard
             key={item.id}
             card={item}
@@ -20,12 +36,12 @@ function MoviesCardList({movies, handleCardSave, handleCardDel, savedMovies}) {
           />
         ))}
       </ul>
-      <button
-        type="button"
-        className={`movies__card-list-more ${isCloseButtonMore ? 'movies__card-list-more_closed' : ''}`}
-      >
-        Ещё
-      </button>
+            <button onClick={handleClickMoreMovies}
+             type="button"
+             className={`movies__card-list-more ${isCloseButtonMore ? 'movies__card-list-more_closed' : ''}`}
+            >
+            Ещё
+            </button>
     </section>
     );
 }

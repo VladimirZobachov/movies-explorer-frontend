@@ -45,7 +45,11 @@ function App() {
                     }
                 })
                 .catch((err) => {
-                    console.log(err);
+                    setIsInfoTooltip({
+                        isOpen: true,
+                        statusOk: false,
+                        textStatus: err.message,
+                    })
                 });
         }
     }, [loggedIn]);
@@ -57,7 +61,11 @@ function App() {
                 setMovies(movies);
             })
             .catch((err) => {
-                console.log(err);
+                setIsInfoTooltip({
+                    isOpen: true,
+                    statusOk: false,
+                    textStatus: err.message,
+                })
             })
     }, [loggedIn]);
 
@@ -72,7 +80,11 @@ function App() {
                     setSavedMovies(userMovies);
                 })
                 .catch((err) => {
-                    console.log(err);
+                    setIsInfoTooltip({
+                        isOpen: true,
+                        statusOk: false,
+                        textStatus: err.message,
+                    })
                 })
         }
     }, [loggedIn, currentUser]);
@@ -86,7 +98,11 @@ function App() {
                     setSavedMovies([res, ...savedMovies]);
                 })
                 .catch((err) => {
-                    console.log(err);
+                    setIsInfoTooltip({
+                        isOpen: true,
+                        statusOk: false,
+                        textStatus: err.message,
+                    })
                 })
         }
     }
@@ -103,11 +119,19 @@ function App() {
                             setSavedMovies(res);
                         })
                         .catch((err) => {
-                            console.log(err);
+                            setIsInfoTooltip({
+                                isOpen: true,
+                                statusOk: false,
+                                textStatus: err.message,
+                            })
                         })
                 })
                 .catch((err) => {
-                    console.log(err);
+                    setIsInfoTooltip({
+                        isOpen: true,
+                        statusOk: false,
+                        textStatus: err.message,
+                    })
                 })
         }
     }
@@ -119,8 +143,12 @@ function App() {
                 setCurrentUser(user);
                 onLogin(email, password);
             })
-            .catch((e) => {
-                console.log(e);
+            .catch((err) => {
+                setIsInfoTooltip({
+                    isOpen: true,
+                    statusOk: false,
+                    textStatus: err.message,
+                })
             });
     }
 
@@ -132,8 +160,12 @@ function App() {
                 localStorage.setItem('jwt', JSON.stringify(jwt.token));
                 history.push('/movies');
             })
-            .catch((e) => {
-                console.log(e);
+            .catch((err) => {
+                setIsInfoTooltip({
+                    isOpen: true,
+                    statusOk: false,
+                    textStatus: err.message,
+                })
             });
     }
 
@@ -150,8 +182,12 @@ function App() {
             .then((user) => {
                 setCurrentUser(user)
             })
-            .catch((e) => {
-                console.log(e);
+            .catch((err) => {
+                setIsInfoTooltip({
+                    isOpen: true,
+                    statusOk: false,
+                    textStatus: err.message,
+                })
             })
     }
 

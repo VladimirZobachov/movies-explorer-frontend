@@ -11,19 +11,29 @@ function SavedMovies({ loggedIn, movies, handleCardDel, setIsInfoTooltip }) {
     const currentUser = useContext(CurrentUserContext);
     const [shortMovies, setShortMovies] = useState(localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true' ? true : false);
     const [movie, setMovie] = useState('');
-    const [listOfMovies, setListOfMovies] = useState(movies);
-    const [searchingMovies, setSearchingMovies] = useState(listOfMovies);
+    const [searchingMovies, setSearchingMovies] = useState(movies);
 
     const handleMovie = (e) => {
         const { value } = e.target;
         setMovie(value);
     };
 
-    const handleDelMovie = async(movie) =>{
+    const handleShortMovie = ()=>{
+        setShortMovies(!shortMovies);
+        localStorage.setItem(`${currentUser.email}-${page}-shortMovie`, !shortMovies);
+    }
+
+    const onSubmitForm = async(e)=>{
         try{
-            await handleCardDel(movie);
-            const newListMovies = await movies.filter(item => item.movieId !== movie.movieId);
-            await setListOfMovies(newListMovies);
+            e.preventDefault();
+            await setSearchingMovies(filterMovies(movies, movie, shortMovies));
+            if(filterMovies(movies, movie, shortMovies).length === 0){
+               await setIsInfoTooltip({
+                    isOpen: true,
+                    statusOk: false,
+                    textStatus: 'по запросу ничего не найдено измените его пжлта)',
+                })
+            }
         }catch (err){
             setIsInfoTooltip({
                 isOpen: true,
@@ -31,33 +41,15 @@ function SavedMovies({ loggedIn, movies, handleCardDel, setIsInfoTooltip }) {
                 textStatus: err.message,
             })
         }
-    }
-
-    const handleShortMovie = ()=>{
-        setShortMovies(!shortMovies);
-        localStorage.setItem(`${currentUser.email}-${page}-shortMovie`, shortMovies);
-    }
-
-    const onSubmitForm = (e)=>{
-        e.preventDefault();
-        setSearchingMovies(filterMovies(movies, movie, shortMovies));
     };
 
     useEffect(()=>{
-        setListOfMovies(searchingMovies);
-    }, [searchingMovies]);
-
-    useEffect(()=>{
-        if(localStorage.getItem(`${currentUser.email}-${page}-movie`)){
-            setMovie(localStorage.getItem(`${currentUser.email}-${page}-movie`));
-            (localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true') ? setShortMovies(true) : setShortMovies(false);
+        if(localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true'){
+            setShortMovies(true);
+        }else{
+            setShortMovies(false);
         }
-    }, [currentUser])
-
-    useEffect(()=>{
-        setListOfMovies(movies);
     }, [currentUser]);
-
 
     return (
     <>
@@ -70,8 +62,9 @@ function SavedMovies({ loggedIn, movies, handleCardDel, setIsInfoTooltip }) {
           onSubmitForm = {onSubmitForm}
       />
       <MoviesCardList
-          movies={listOfMovies}
-          handleDelMovie={handleDelMovie}
+          movies={movies}
+          searchingMovies={searchingMovies}
+          handleDelMovie={handleCardDel}
       />
       <Footer />
     </>
