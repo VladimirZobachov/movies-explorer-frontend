@@ -183,7 +183,6 @@ function App() {
                                 handleCardSave={handleCardSave}
                                 handleCardDel={handleCardDel}
                                 setIsInfoTooltip={setIsInfoTooltip}
-                                isLoad={isLoad}
                                 setIsLoad={setIsLoad}
                                 component={Movies}
                             />
@@ -193,6 +192,8 @@ function App() {
                                 movies={savedMovies}
                                 loggedIn={loggedIn}
                                 handleCardDel={handleCardDel}
+                                setIsInfoTooltip={setIsInfoTooltip}
+                                setIsLoad={setIsLoad}
                                 component={SavedMovies}
                             />
                             <ProtectedRoute

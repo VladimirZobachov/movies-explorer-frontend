@@ -18,6 +18,7 @@
     visibility: visible;
 }
 .popup__infotooltip-title{
+    text-align: center;
     font-family: "Inter", "Arial ", sans-serif;
     font-size: 24px;
     font-weight: 900;
@@ -42,6 +43,8 @@
     opacity: 0.6;
 }
 .popup__content-info{
+    display: grid;
+    justify-items: center;
     position: relative;
     max-width: 430px;
     min-width: 430px;

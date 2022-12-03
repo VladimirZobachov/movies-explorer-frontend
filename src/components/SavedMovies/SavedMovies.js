@@ -6,28 +6,31 @@ import SearchForm from "./SearchForm/SearchForm";
 import {filterMovies} from "../../utils/utils";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 
-function SavedMovies({ loggedIn, movies, handleCardDel }) {
+function SavedMovies({ loggedIn, movies, handleCardDel, setIsInfoTooltip }) {
     const page = 'savedPage';
     const currentUser = useContext(CurrentUserContext);
     const [shortMovies, setShortMovies] = useState(localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true' ? true : false);
     const [movie, setMovie] = useState('');
-    const [listMovies, setListMovies] = useState(movies);
-    const [searchingMovies, setSearchingMovies] = useState(listMovies);
+    const [listOfMovies, setListOfMovies] = useState(movies);
+    const [searchingMovies, setSearchingMovies] = useState(listOfMovies);
 
     const handleMovie = (e) => {
         const { value } = e.target;
         setMovie(value);
     };
 
-    const handleDelMovie = (movie) =>{
-        handleCardDel(movie);
-        const newListMovies = listMovies.filter(item => item.movieId !== movie.movieId);
-        setListMovies(newListMovies);
-    }
-
-    const handleSaveShortMovie = (value)=>{
-        setShortMovies(value);
-        localStorage.setItem(`${currentUser.email}-${page}-shortMovie`, shortMovies);
+    const handleDelMovie = async(movie) =>{
+        try{
+            await handleCardDel(movie);
+            const newListMovies = await movies.filter(item => item.movieId !== movie.movieId);
+            await setListOfMovies(newListMovies);
+        }catch (err){
+            setIsInfoTooltip({
+                isOpen: true,
+                statusOk: false,
+                textStatus: err.message,
+            })
+        }
     }
 
     const handleShortMovie = ()=>{
@@ -41,7 +44,7 @@ function SavedMovies({ loggedIn, movies, handleCardDel }) {
     };
 
     useEffect(()=>{
-        setListMovies(searchingMovies);
+        setListOfMovies(searchingMovies);
     }, [searchingMovies]);
 
     useEffect(()=>{
@@ -52,12 +55,9 @@ function SavedMovies({ loggedIn, movies, handleCardDel }) {
     }, [currentUser])
 
     useEffect(()=>{
-        setListMovies(movies);
+        setListOfMovies(movies);
     }, [currentUser]);
 
-    useEffect(()=>{
-        handleSaveShortMovie(shortMovies);
-    }, [shortMovies])
 
     return (
     <>
@@ -70,7 +70,7 @@ function SavedMovies({ loggedIn, movies, handleCardDel }) {
           onSubmitForm = {onSubmitForm}
       />
       <MoviesCardList
-          movies={listMovies}
+          movies={listOfMovies}
           handleDelMovie={handleDelMovie}
       />
       <Footer />

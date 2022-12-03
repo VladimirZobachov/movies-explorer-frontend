@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer';
 import {filterMovies, saveStatePage} from '../../utils/utils';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel, setIsInfoTooltip, isLoad, setIsLoad}) {
+function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel, setIsInfoTooltip, setIsLoad}) {
     const page = 'moviesPage';
     const currentUser = useContext(CurrentUserContext);
     const [searchingMovies, setSearchingMovies] = useState([]);
@@ -29,7 +29,7 @@ function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel, 
             e.preventDefault();
             const listOfMovies = await filterMovies(movies, movie, shortMovies);
             if (listOfMovies.length === 0){
-                isLoad(false);
+                setIsLoad(false);
                 setIsInfoTooltip({
                     isOpen: true,
                     statusOk: false,
@@ -42,7 +42,7 @@ function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel, 
             setIsInfoTooltip({
                 isOpen: true,
                 statusOk: false,
-                textStatus: 'Что-то пошло не так, попробуйте позже',
+                textStatus: err.message,
             })
         }finally {
             setIsLoad(false);
