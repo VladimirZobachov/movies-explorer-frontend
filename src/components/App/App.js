@@ -178,7 +178,7 @@ function App() {
 
     const onProfile = (name, email) => {
         MainApi
-            .updateUser(jwt, name, email)
+            .updateUser(name, email, jwt)
             .then((user) => {
                 setCurrentUser(user)
             })

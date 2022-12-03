@@ -29,9 +29,9 @@ function Login({ onLogin }) {
       }
     }
 
-    setValues({ ...values, [name]: value }); // универсальный обработчик полей
-    setErrors({ ...errors, [name]: input.validationMessage }); // ошибок
-    setIsValid(input.closest('form').checkValidity()); // проверка валидности
+    setValues({ ...values, [name]: value });
+    setErrors({ ...errors, [name]: input.validationMessage });
+    setIsValid(input.closest('form').checkValidity());
   }
 
   const handleChange = (e) => {
