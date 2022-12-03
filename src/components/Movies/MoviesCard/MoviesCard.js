@@ -18,7 +18,9 @@ function MoviesCard(props) {
         } onClick={props.isSaved ? handleCardDel : handleCardSave}/>
         <span className="movies__card-duration">{props.card.duration}</span>
       </div>
-      <img src={options.baseUrl + props.card.image.formats.thumbnail.url} alt={props.card.nameRU} />
+      <a href={props.card.trailerLink} target="_blank">
+        <img src={options.baseUrl + props.card.image.formats.thumbnail.url} alt={props.card.nameRU} />
+      </a>
     </li>
     );
 }

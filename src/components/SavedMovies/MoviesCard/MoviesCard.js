@@ -12,7 +12,9 @@ function MoviesCard(props) {
                  onClick={handleCardDel}/>
                 <span className="movies__card-duration">{props.card.duration}</span>
             </div>
-            <img src={props.card.thumbnail} alt={props.card.nameRU} />
+            <a href={props.card.trailerLink} target="_blank">
+                <img src={props.card.thumbnail} alt={props.card.nameRU} />
+            </a>
         </li>
     );
 }
