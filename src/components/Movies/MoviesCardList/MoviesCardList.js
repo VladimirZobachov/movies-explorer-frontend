@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import {SHOWMOVIES_LIST, SHOWMOVIES_MORE} from '../../../utils/constants';
 
 function MoviesCardList({movies, handleCardSave, handleCardDel, savedMovies}) {
     const [isCloseButtonMore, setIsCloseButtonMore] = useState(true);
@@ -8,7 +9,7 @@ function MoviesCardList({movies, handleCardSave, handleCardDel, savedMovies}) {
         return savedMoviesList.find((item) => item.movieId == movie.id || movie.movieId);
     }
     const handleClickMoreMovies = () =>{
-        setListOfMovies(movies.slice(0, listOfMovies.length + 3));
+        setListOfMovies(movies.slice(0, listOfMovies.length + SHOWMOVIES_MORE));
     }
     useEffect(()=>{
         if(movies.length > listOfMovies.length){
@@ -19,7 +20,7 @@ function MoviesCardList({movies, handleCardSave, handleCardDel, savedMovies}) {
     },[listOfMovies])
 
     useEffect(()=>{
-        setListOfMovies(movies.slice(0,6));
+        setListOfMovies(movies.slice(0, SHOWMOVIES_LIST));
     }, [movies])
 
     return (

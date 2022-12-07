@@ -42,7 +42,7 @@ function App() {
     useEffect(() => {
         const path = location.pathname;
         if (!jwt) {
-            onLogout();
+            return
         } else {
             MainApi.getUser(jwt)
                 .then((user) => {
@@ -79,7 +79,7 @@ function App() {
 
     useEffect(() => {
         if (!jwt) {
-            onLogout();
+            return
         } else {
             MainApi
                 .getSavedMovies(jwt)
