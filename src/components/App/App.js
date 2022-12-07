@@ -188,6 +188,11 @@ function App() {
         MainApi
             .updateUser(name, email, jwt)
             .then((user) => {
+                setIsInfoTooltip({
+                    isOpen: true,
+                    statusOk: true,
+                    textStatus: 'Данные пользователя успешно обновлены',
+                })
                 setCurrentUser(user)
             })
             .catch((err) => {
