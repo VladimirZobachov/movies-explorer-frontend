@@ -42,7 +42,7 @@ function App() {
     useEffect(() => {
         const path = location.pathname;
         if (!jwt) {
-            return;
+            onLogout();
         } else {
             MainApi.getUser(jwt)
                 .then((user) => {
@@ -79,7 +79,7 @@ function App() {
 
     useEffect(() => {
         if (!jwt) {
-            return;
+            onLogout();
         } else {
             MainApi
                 .getSavedMovies(jwt)
@@ -99,7 +99,7 @@ function App() {
 
     const handleCardSave = (card) => {
         if (!jwt) {
-            return false;
+            onLogout();
         } else {
             MainApi.saveMovieCard(card, jwt)
                 .then((res) => {
@@ -117,7 +117,7 @@ function App() {
 
     const handleCardDel = (card) => {
         if (!jwt) {
-            return false;
+            onLogout();
         } else {
             const deletingMovie = savedMovies.find((item) => item.movieId === card.id || item.movieId === card.movieId);
             MainApi.deleteMovieCard(deletingMovie._id, jwt)
@@ -186,23 +186,27 @@ function App() {
     }
 
     const onProfile = (name, email) => {
-        MainApi
-            .updateUser(name, email, jwt)
-            .then((user) => {
-                setIsInfoTooltip({
-                    isOpen: true,
-                    statusOk: true,
-                    textStatus: 'Данные пользователя успешно обновлены',
+        if(!jwt){
+            onLogout();
+        }else{
+            MainApi
+                .updateUser(name, email, jwt)
+                .then((user) => {
+                    setIsInfoTooltip({
+                        isOpen: true,
+                        statusOk: true,
+                        textStatus: 'Данные пользователя успешно обновлены',
+                    })
+                    setCurrentUser(user)
                 })
-                setCurrentUser(user)
-            })
-            .catch((err) => {
-                setIsInfoTooltip({
-                    isOpen: true,
-                    statusOk: false,
-                    textStatus: err.message,
+                .catch((err) => {
+                    setIsInfoTooltip({
+                        isOpen: true,
+                        statusOk: false,
+                        textStatus: err.message,
+                    })
                 })
-            })
+        }
     }
 
     const onCloseInfoTooltip = () => {
