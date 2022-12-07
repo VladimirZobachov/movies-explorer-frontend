@@ -12,6 +12,7 @@ function SavedMovies({ loggedIn, movies, handleCardDel, setIsInfoTooltip, handle
     const [shortMovies, setShortMovies] = useState(localStorage.getItem(`${page}-shortMovie`) === 'true' ? true : false);
     const [movie, setMovie] = useState('');
     const [searchingMovies, setSearchingMovies] = useState(movies);
+    const [showMovies, setShowMovies] = useState(movies);
 
     const handleMovie = (e) => {
         const { value } = e.target;
@@ -51,6 +52,14 @@ function SavedMovies({ loggedIn, movies, handleCardDel, setIsInfoTooltip, handle
         }
     }, [currentUser]);
 
+    useEffect(()=>{
+        setShowMovies(searchingMovies);
+    }, [searchingMovies])
+
+    useEffect(()=>{
+        setShowMovies(movies);
+    }, [movies])
+
     return (
     <>
       <Header
@@ -65,8 +74,7 @@ function SavedMovies({ loggedIn, movies, handleCardDel, setIsInfoTooltip, handle
           onSubmitForm = {onSubmitForm}
       />
       <MoviesCardList
-          movies={movies}
-          searchingMovies={searchingMovies}
+          movies={showMovies}
           handleCardDel={handleCardDel}
       />
       <Footer />

@@ -1,13 +1,11 @@
-import React from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList({movies, handleCardDel, searchingMovies}) {
-  let listOfMovies = [];
-  searchingMovies.length !== 0 ? listOfMovies = searchingMovies : listOfMovies = movies;
+function MoviesCardList({movies, handleCardDel}) {
+
   return (
     <section className="movies">
       <ul className="movies__card-list">
-          {listOfMovies.map((item) => {
+          {movies.map((item) => {
               return(
               <MoviesCard
                   key={item._id}
