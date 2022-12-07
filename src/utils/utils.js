@@ -13,7 +13,7 @@ export const filterMovies = (movies, movie, shortMovie) =>{
   }
 }
 export const saveStatePage = (page, savedMovies, shortMovie, movie, currentUser) =>{
-  localStorage.setItem(`${currentUser.email}-${page}-movies`, JSON.stringify(savedMovies));
-  localStorage.setItem(`${currentUser.email}-${page}-shortMovie`, shortMovie);
-  localStorage.setItem(`${currentUser.email}-${page}-movie`, movie);
+  localStorage.setItem(`${page}-movies`, JSON.stringify(savedMovies));
+  localStorage.setItem(`${page}-shortMovie`, shortMovie);
+  localStorage.setItem(`${page}-movie`, movie);
 }

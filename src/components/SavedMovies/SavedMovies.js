@@ -9,7 +9,7 @@ import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 function SavedMovies({ loggedIn, movies, handleCardDel, setIsInfoTooltip, handleOpenPopup }) {
     const page = 'savedPage';
     const currentUser = useContext(CurrentUserContext);
-    const [shortMovies, setShortMovies] = useState(localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true' ? true : false);
+    const [shortMovies, setShortMovies] = useState(localStorage.getItem(`${page}-shortMovie`) === 'true' ? true : false);
     const [movie, setMovie] = useState('');
     const [searchingMovies, setSearchingMovies] = useState(movies);
 
@@ -20,7 +20,7 @@ function SavedMovies({ loggedIn, movies, handleCardDel, setIsInfoTooltip, handle
 
     const handleShortMovie = ()=>{
         setShortMovies(!shortMovies);
-        localStorage.setItem(`${currentUser.email}-${page}-shortMovie`, !shortMovies);
+        localStorage.setItem(`${page}-shortMovie`, !shortMovies);
     }
 
     const onSubmitForm = async(e)=>{
@@ -44,7 +44,7 @@ function SavedMovies({ loggedIn, movies, handleCardDel, setIsInfoTooltip, handle
     };
 
     useEffect(()=>{
-        if(localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true'){
+        if(localStorage.getItem(`${page}-shortMovie`) === 'true'){
             setShortMovies(true);
         }else{
             setShortMovies(false);

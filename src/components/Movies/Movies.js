@@ -11,7 +11,7 @@ function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel, 
     const currentUser = useContext(CurrentUserContext);
     const [searchingMovies, setSearchingMovies] = useState([]);
     const [movie, setMovie] = useState('');
-    const [shortMovies, setShortMovies] = useState(localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true' ? true : false);
+    const [shortMovies, setShortMovies] = useState(localStorage.getItem(`${page}-shortMovie`) === 'true' ? true : false);
 
     const handleMovie = (e) => {
         const { value } = e.target;
@@ -20,7 +20,7 @@ function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel, 
 
     const handleSaveShortMovie = (value)=>{
         setShortMovies(value);
-        localStorage.setItem(`${currentUser.email}-${page}-shortMovie`, shortMovies);
+        localStorage.setItem(`${page}-shortMovie`, shortMovies);
     }
 
     const onSubmitForm = async (e) => {
@@ -51,14 +51,14 @@ function Movies({ loggedIn, movies, savedMovies, handleCardSave, handleCardDel, 
 
     const handleShortMovie = ()=>{
         setShortMovies(!shortMovies);
-        localStorage.setItem(`${currentUser.email}-${page}-shortMovie`, shortMovies);
+        localStorage.setItem(`${page}-shortMovie`, shortMovies);
     }
 
     useEffect(()=>{
-        if(localStorage.getItem(`${currentUser.email}-${page}-movies`)){
-            setSearchingMovies(JSON.parse(localStorage.getItem(`${currentUser.email}-${page}-movies`)));
-            setMovie(localStorage.getItem(`${currentUser.email}-${page}-movie`));
-            (localStorage.getItem(`${currentUser.email}-${page}-shortMovie`) === 'true') ? setShortMovies(true) : setShortMovies(false);
+        if(localStorage.getItem(`${page}-movies`)){
+            setSearchingMovies(JSON.parse(localStorage.getItem(`${page}-movies`)));
+            setMovie(localStorage.getItem(`${page}-movie`));
+            (localStorage.getItem(`${page}-shortMovie`) === 'true') ? setShortMovies(true) : setShortMovies(false);
         }
     }, [currentUser])
 
