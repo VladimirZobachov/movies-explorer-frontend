@@ -30,6 +30,9 @@
     cursor: pointer;
     margin: 20px 15px 0;
 }
+.movies__card-save_del{
+    background-image: url("../../../images/d9.svg");
+}
 .movies__card-save-action{
     background-image: url("../../../images/save9.svg");
 }
