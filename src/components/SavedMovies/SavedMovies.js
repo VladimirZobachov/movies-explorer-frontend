@@ -67,7 +67,7 @@ function SavedMovies({ loggedIn, movies, handleCardDel, setIsInfoTooltip, handle
       <MoviesCardList
           movies={movies}
           searchingMovies={searchingMovies}
-          handleDelMovie={handleCardDel}
+          handleCardDel={handleCardDel}
       />
       <Footer />
     </>

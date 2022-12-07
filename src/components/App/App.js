@@ -119,12 +119,13 @@ function App() {
         if (!jwt) {
             return false;
         } else {
-            const deletingMovie = savedMovies.filter((item) => item.movieId == card.id || card.movieId);
-            MainApi.deleteMovieCard(deletingMovie[0]._id, jwt)
+            const deletingMovie = savedMovies.find((item) => item.movieId === card.id || item.movieId === card.movieId);
+            MainApi.deleteMovieCard(deletingMovie._id, jwt)
                 .then(() => {
                     MainApi.getSavedMovies(jwt)
                         .then((res) => {
-                            setSavedMovies(res);
+                            const userMovies = res.filter((item) => item.owner === currentUser._id);
+                            setSavedMovies(userMovies);
                         })
                         .catch((err) => {
                             setIsInfoTooltip({

@@ -1,7 +1,7 @@
 import React from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList({movies, handleDelMovie, searchingMovies}) {
+function MoviesCardList({movies, handleCardDel, searchingMovies}) {
   let listOfMovies = [];
   searchingMovies.length !== 0 ? listOfMovies = searchingMovies : listOfMovies = movies;
   return (
@@ -12,7 +12,7 @@ function MoviesCardList({movies, handleDelMovie, searchingMovies}) {
               <MoviesCard
                   key={item._id}
                   card={item}
-                  handleDelMovie={handleDelMovie}
+                  handleCardDel={handleCardDel}
               />)
           })}
       </ul>
