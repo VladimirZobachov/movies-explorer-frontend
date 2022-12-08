@@ -6,7 +6,7 @@ function MoviesCardList({movies, handleCardSave, handleCardDel, savedMovies}) {
     const [isCloseButtonMore, setIsCloseButtonMore] = useState(true);
     const [listOfMovies, setListOfMovies] = useState([]);
     const checkSavedMovie = (savedMoviesList, movie)=>{
-        return savedMoviesList.find((item) => item.movieId == movie.id || movie.movieId);
+        return savedMoviesList.find((item) => item.movieId == movie.id || item.movieId == movie.movieId);
     }
     const handleClickMoreMovies = () =>{
         setListOfMovies(movies.slice(0, listOfMovies.length + SHOWMOVIES_MORE));

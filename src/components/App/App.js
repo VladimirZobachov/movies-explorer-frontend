@@ -119,7 +119,7 @@ function App() {
         if (!jwt) {
             onLogout();
         } else {
-            const deletingMovie = savedMovies.find((item) => item.movieId === card.id || item.movieId === card.movieId);
+            const deletingMovie = savedMovies.find((item) => item.movieId == card.id || item.movieId == card.movieId);
             MainApi.deleteMovieCard(deletingMovie._id, jwt)
                 .then(() => {
                     MainApi.getSavedMovies(jwt)
