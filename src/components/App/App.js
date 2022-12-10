@@ -31,7 +31,6 @@ function App() {
     const [isLoad, setIsLoad] = useState(false);
     const history = useHistory();
     const location = useLocation();
-    const jwt = localStorage.getItem('jwt');
     const handleOpenPopup = ()=>{
         setIsOpenPopup(true);
     }
@@ -41,8 +40,9 @@ function App() {
 
     useEffect(() => {
         const path = location.pathname;
+        const jwt = localStorage.getItem('jwt');
         if (!jwt) {
-            return
+            onLogout();
         } else {
             MainApi.getUser(jwt)
                 .then((user) => {
@@ -52,15 +52,11 @@ function App() {
                         history.push(path);
                     }
                 })
-                .catch((err) => {
-                    setIsInfoTooltip({
-                        isOpen: true,
-                        statusOk: false,
-                        textStatus: err.message,
-                    })
+                .catch(() => {
+                    onLogout();
                 });
         }
-    }, [loggedIn]);
+    }, []);
 
     useEffect(() => {
         moviesApi
@@ -78,6 +74,7 @@ function App() {
     }, [loggedIn]);
 
     useEffect(() => {
+        const jwt = localStorage.getItem('jwt');
         if (!jwt) {
             return
         } else {
@@ -88,16 +85,13 @@ function App() {
                     setSavedMovies(userMovies);
                 })
                 .catch((err) => {
-                    setIsInfoTooltip({
-                        isOpen: true,
-                        statusOk: false,
-                        textStatus: err.message,
-                    })
+                    console.log(err);
                 })
         }
     }, [loggedIn, currentUser]);
 
     const handleCardSave = (card) => {
+        const jwt = localStorage.getItem('jwt');
         if (!jwt) {
             onLogout();
         } else {
@@ -116,6 +110,7 @@ function App() {
     }
 
     const handleCardDel = (card) => {
+        const jwt = localStorage.getItem('jwt');
         if (!jwt) {
             onLogout();
         } else {
@@ -156,7 +151,7 @@ function App() {
                 setIsInfoTooltip({
                     isOpen: true,
                     statusOk: false,
-                    textStatus: err.message,
+                    textStatus: err,
                 })
             });
     }
@@ -170,11 +165,7 @@ function App() {
                 history.push('/movies');
             })
             .catch((err) => {
-                setIsInfoTooltip({
-                    isOpen: true,
-                    statusOk: false,
-                    textStatus: err.message,
-                })
+                console.log(err);
             });
     }
 
@@ -186,6 +177,7 @@ function App() {
     }
 
     const onProfile = (name, email) => {
+        const jwt = localStorage.getItem('jwt');
         if(!jwt){
             onLogout();
         }else{
