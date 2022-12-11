@@ -1,11 +1,9 @@
 import {BASE_URL} from "./constants";
 import {options} from "./constants";
 
-function check(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(res.status);
+async function check(res) {
+  const result = await res.json();
+  return res.ok ? result : Promise.reject(result.message);
 }
 
 export const register = (email, password, name) => fetch(`${BASE_URL}/signup`, {
