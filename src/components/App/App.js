@@ -101,7 +101,11 @@ function App() {
                     setSavedMovies(userMovies);
                 })
                 .catch((err) => {
-                    console.log(err);
+                    setIsInfoTooltip({
+                        isOpen: true,
+                        statusOk: false,
+                        textStatus: err,
+                    })
                 })
         }
     }, [loggedIn, currentUser]);
@@ -119,7 +123,7 @@ function App() {
                     setIsInfoTooltip({
                         isOpen: true,
                         statusOk: false,
-                        textStatus: err.message,
+                        textStatus: err,
                     })
                 })
         }
@@ -142,7 +146,7 @@ function App() {
                             setIsInfoTooltip({
                                 isOpen: true,
                                 statusOk: false,
-                                textStatus: err.message,
+                                textStatus: err,
                             })
                         })
                 })
@@ -150,7 +154,7 @@ function App() {
                     setIsInfoTooltip({
                         isOpen: true,
                         statusOk: false,
-                        textStatus: err.message,
+                        textStatus: err,
                     })
                 })
         }
@@ -181,7 +185,11 @@ function App() {
                 history.push('/movies');
             })
             .catch((err) => {
-                console.log(err);
+                setIsInfoTooltip({
+                    isOpen: true,
+                    statusOk: false,
+                    textStatus: err,
+                })
             });
     }
 
@@ -211,7 +219,7 @@ function App() {
                     setIsInfoTooltip({
                         isOpen: true,
                         statusOk: false,
-                        textStatus: err.message,
+                        textStatus: err,
                     })
                 })
         }
