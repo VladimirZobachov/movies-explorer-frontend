@@ -6,6 +6,13 @@
     width: 90%;
     max-width: 410px;
 }
+.profile input{
+    text-align: right;
+    border: none;
+}
+.profile input:focus{
+    outline: none;
+}
 .profile__edit{
     display: grid;
     align-items: center;

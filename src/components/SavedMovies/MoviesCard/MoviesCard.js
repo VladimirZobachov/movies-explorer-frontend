@@ -1,13 +1,20 @@
-import film from "../../../images/film.png";
-function MoviesCard(props){
-    return(
+import React from 'react';
+
+function MoviesCard(props) {
+    const handleCardDel = ()=>{
+        props.handleCardDel(props.card);
+    }
+    return (
         <li className="movies__card">
             <div className="movies__card-header">
-                <h3 className="movies__card-title">33 слова о дизайне</h3>
-                <button type="button" className="movies__card-save"></button>
-                <span className="movies__card-duration">1ч 47м</span>
+                <h3 className="movies__card-title">{props.card.nameRU}</h3>
+                <button type="button" className="movies__card-save movies__card-save_del"
+                 onClick={handleCardDel}/>
+                <span className="movies__card-duration">{props.card.duration}</span>
             </div>
-            <img src={film} alt="карточка фильма"/>
+            <a href={props.card.trailerLink} target="_blank">
+                <img src={props.card.thumbnail} alt={props.card.nameRU} />
+            </a>
         </li>
     );
 }

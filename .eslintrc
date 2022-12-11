@@ -1,0 +1,12 @@
+{
+    "rules": {
+      "react/jsx-filename-extension": [ 1, { "extensions": [ ".js", ".jsx" ] } ]
+    },
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "requireConfigFile": false
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ]
+}

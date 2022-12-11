@@ -1,0 +1,74 @@
+.popup__tooltip{
+    display: grid;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: visibility 1s, opacity 1s linear;
+    opacity: 0;
+    visibility: hidden;
+    align-items: center;
+    justify-content: center;
+}
+.popup__tooltip_opened{
+    display: grid;
+    opacity: 1;
+    visibility: visible;
+}
+.popup__infotooltip-title{
+    text-align: center;
+    font-family: "Inter", "Arial ", sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 29px;
+    padding-top: 32px;
+    padding-bottom: 60px;
+    margin: 0;
+}
+.popup__infotooltip-close-button{
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    background-image: url("../../images/close_icon.svg");
+    background-size: cover;
+}
+.popup__close-button:hover{
+    opacity: 0.6;
+}
+.popup__content-info{
+    display: grid;
+    justify-items: center;
+    position: relative;
+    max-width: 430px;
+    min-width: 430px;
+    min-height: 230px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 36px;
+    box-sizing: border-box;
+}
+@media all and (max-width: 521px){
+    .popup__content-edit-avatar{
+        min-width: 282px;
+        padding: 23px;
+    }
+}
+@media all and (max-width: 629px){
+    .popup__close-button{
+        right: 0;
+        width: 20px;
+        height: 20px;
+    }
+}
+@media all and (max-width: 521px){
+    .popup__infotooltip-title{
+        font-size: 18px;
+    }
+}

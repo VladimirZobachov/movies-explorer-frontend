@@ -1,6 +1,6 @@
 .movies__card-list{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     gap: 25px;
     list-style-type: none;
     margin: 70px auto;
@@ -16,4 +16,7 @@
     background-color: transparent;
     align-content: center;
     cursor: pointer;
+}
+.movies__card-list-more_closed{
+    display: none;
 }

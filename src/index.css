@@ -12,13 +12,15 @@
 @import url("components/Main/Techs/Techs.css");
 @import url("components/Movies/MoviesCard/MoviesCard.css");
 @import url("components/Movies/MoviesCardList/MoviesCardList.css");
-@import url("components/Movies/Preloader/Preloader.css");
+@import url("components/Preloader/Preloader.css");
 @import url("components/Movies/SearchForm/SearchForm.css");
 @import url("components/Movies/Movies.css");
 @import url("components/Footer/Footer.css");
-@import url("components/Popup/Popup.css");
 @import url("components/Profile/Profile.css");
 @import url("components/Login/Login.css");
+@import url("components/InfoTooltip/InfoTooltip.css");
 @import url("components/NotFound/NotFound.css");
+@import url("components/InfoTooltip/InfoTooltip.css");
+@import url("components/Popup/Popup.css");
 @import url("media.css");
 

@@ -1,14 +1,27 @@
-import film from "../../../images/film.png";
-function MoviesCard(){
-    return(
-        <li className="movies__card">
-            <div className="movies__card-header">
-                <h3 className="movies__card-title">33 слова о дизайне</h3>
-                <button type="button" className="movies__card-save"></button>
-                <span className="movies__card-duration">1ч 47м</span>
-            </div>
-            <img src={film} alt="карточка фильма"/>
-        </li>
+import React from 'react';
+import {options} from "../../../utils/constants";
+
+function MoviesCard(props) {
+    const handleCardSave = ()=>{
+      props.handleCardSave(props.card);
+    }
+    const handleCardDel = ()=>{
+        props.handleCardDel(props.card);
+    }
+
+    return (
+    <li className="movies__card">
+      <div className="movies__card-header">
+        <h3 className="movies__card-title">{props.card.nameRU}</h3>
+        <button type="button" className={
+            `movies__card-save ${props.isSaved ? 'movies__card-save-action' : ''}`
+        } onClick={props.isSaved ? handleCardDel : handleCardSave}/>
+        <span className="movies__card-duration">{props.card.duration}</span>
+      </div>
+      <a href={props.card.trailerLink} target="_blank">
+        <img src={options.baseUrl + props.card.image.formats.thumbnail.url} alt={props.card.nameRU} />
+      </a>
+    </li>
     );
 }
 export default MoviesCard;
