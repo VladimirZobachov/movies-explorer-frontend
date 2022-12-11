@@ -59,6 +59,22 @@ function App() {
     }, []);
 
     useEffect(() => {
+        if (loggedIn) {
+            const jwt = localStorage.getItem('jwt');
+            MainApi
+                .getUser(jwt)
+                .then(res => setCurrentUser(res))
+                .catch(err =>
+                    setIsInfoTooltip({
+                        isOpen: true,
+                        successful: false,
+                        text: err,
+                    })
+                )
+        }
+    }, [loggedIn]);
+
+    useEffect(() => {
         moviesApi
             .getMovies()
             .then((movies) => {
@@ -68,7 +84,7 @@ function App() {
                 setIsInfoTooltip({
                     isOpen: true,
                     statusOk: false,
-                    textStatus: err.message,
+                    textStatus: err,
                 })
             })
     }, [loggedIn]);
